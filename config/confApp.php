@@ -24,6 +24,7 @@ require_once "model/DBPDO.php";
 /* Añadir controladores en Arrays */
 $controllers = [
     "login" => "controller/cLogin.php",
+    "inicioPublico" => "controller/cInicioPublico.php",
     "registrar" => "controller/cRegistro.php",
     "inicio" => "controller/cInicio.php",
     "editar" => "controller/cMiCuenta.php",
@@ -33,6 +34,7 @@ $controllers = [
 /* Añadir vistas en Arrays */
 $views = [
     "layout" => "view/Layout.php",
+    "inicioPublico" => "view/vInicioPublico.php",
     "login" => "view/vLogin.php",
     "registrar" => "view/vRegistro.php",
     "inicio" => "view/vInicio.php",

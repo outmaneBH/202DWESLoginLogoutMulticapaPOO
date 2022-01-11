@@ -8,13 +8,13 @@
 
 /* Si el usuario ha pulsado el button cancelar */
 if (isset($_REQUEST['btncancelar'])) {
-    $_SESSION['vistaEnCurso'] = $controllers['inicio'];
+    $_SESSION['paginaEnCurso'] = $controllers['inicio'];
     header("Location:index.php");
     exit;
 }
 
 /* los variables de la session */
-$objectUsuario = $_SESSION['usuario202DWESAppLoginLogout'];
+$objectUsuario = $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'];
 $USER = $objectUsuario->get_codUsuario();
 $Desc = $objectUsuario->get_descUsuario();
 
@@ -23,13 +23,13 @@ if (isset($_REQUEST['btndelete'])) {
     $borrar = UsuarioPDO::borrarUsuario($USER);
     if ($borrar) {
         session_destroy();
-        $_SESSION['vistaEnCurso'] = $controllers['login'];
+        $_SESSION['paginaEnCurso'] = $controllers['login'];
         header("Location:index.php");
         exit;
     }
 }
 
-$vistaEncurso = $views['borrar'];
+$paginaEnCurso = $views['borrar'];
 /* meter la vista de borrar en un variable y devolver layout */
 require_once $views['layout'];
 ?>

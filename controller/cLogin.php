@@ -1,7 +1,7 @@
 <?php
 /*Si el usuario ha pulsado en registrar cambiamos la vista y devolver la pagina de registrar*/
 if (isset($_REQUEST['Signin'])) {
-    $_SESSION['vistaEnCurso'] = $controllers['registrar'];
+    $_SESSION['paginaEnCurso'] = $controllers['registrar'];
     header("Location:index.php");
     exit;
 }
@@ -26,7 +26,7 @@ if (isset($_REQUEST['btnlogin'])) {
 
         if ($objetoUsuario) {
             
-            $_SESSION['usuario202DWESAppLoginLogout'] = $objetoUsuario;//metemos en la session el usuario seleccionado
+            $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $objetoUsuario;//metemos en la session el usuario seleccionado
             
             $ultimaConexionAnterior = $objetoUsuario->get_fechaHoraUltimaConexion();
             if ($ultimaConexionAnterior != null) {
@@ -34,7 +34,7 @@ if (isset($_REQUEST['btnlogin'])) {
             }
             
             /*LLevamos el usuario a la pagina de inicio*/
-            $_SESSION['vistaEnCurso'] = $controllers['inicio'];
+            $_SESSION['paginaEnCurso'] = $controllers['inicio'];
             header('Location: index.php');
             exit;
         }
@@ -44,6 +44,6 @@ if (isset($_REQUEST['btnlogin'])) {
 }
 
 /* meter la vista de login en un variable y devolver layout */
-$vistaEncurso = $views['login'];
+$paginaEnCurso = $views['login'];
 require_once $views['layout'];
 ?>

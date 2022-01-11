@@ -1,6 +1,6 @@
 <?php
 /* Meter el variable en curso de que vista este en ejecucion:require $vistaEnCurso; */
-require_once $vistaEncurso;
+require_once $paginaEnCurso;
 ?>
 <footer style="position: fixed;bottom: 0;width: 100%" class="bg-dark text-center text-white">
     <!-- Grid container -->

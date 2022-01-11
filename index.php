@@ -11,10 +11,10 @@ require_once 'config/confDBPDO.php';
 
 
 /* Si no hay ningun vista en curso mostramos el login sino mostramos la vista en curso */
-if (isset($_SESSION['vistaEnCurso'])) {
-    require_once $_SESSION['vistaEnCurso'];
+if (isset($_SESSION['paginaEnCurso'])) {
+    require_once $_SESSION['paginaEnCurso'];
 } else {
-    require_once $controllers['login'];
+    require_once $controllers['inicioPublico'];
 }
 ?>
 

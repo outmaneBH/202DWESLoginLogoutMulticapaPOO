@@ -89,11 +89,11 @@
                 <div id="bg" class="p-2 flex-fill bg-dark">
                     <form id="form1" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                         <span> Editar Perfil </span>
-                        <input type="text" name="DescUsuario"   value="<?php echo  $_SESSION['usuario202DWESAppLoginLogout']->get_descUsuario(); ?>"  placeholder="DescUsuario">
-                        <input type="text" name="username" disabled value="<?php echo $_SESSION['usuario202DWESAppLoginLogout']->get_codUsuario(); ?>"  placeholder="username">
-                        <input type="text" name="T01_NumConexiones"  disabled value="Numero de Conexiones : <?php echo $_SESSION['usuario202DWESAppLoginLogout']->get_numAccesos(); ?>"  placeholder="NumConexiones">
-                        <input type="text" name="T01_FechaHoraUltimaConexion" disabled value="UltimaConexion: <?php echo date("d/m/Y H:i:s",$_SESSION['usuario202DWESAppLoginLogout']->get_fechaHoraUltimaConexion()); ?>"  placeholder="FechaHoraUltimaConexion">
-                        <input type="text" name="T01_Perfil" disabled value="Perfil : <?php echo $_SESSION['usuario202DWESAppLoginLogout']->get_perfil(); ?>"  placeholder="Perfil">
+                        <input type="text" name="DescUsuario"   value="<?php echo  $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_descUsuario(); ?>"  placeholder="DescUsuario">
+                        <input type="text" name="username" disabled value="<?php echo $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_codUsuario(); ?>"  placeholder="username">
+                        <input type="text" name="T01_NumConexiones"  disabled value="Numero de Conexiones : <?php echo $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_numAccesos(); ?>"  placeholder="NumConexiones">
+                        <input type="text" name="T01_FechaHoraUltimaConexion" disabled value="UltimaConexion: <?php echo date("d/m/Y H:i:s",$_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_fechaHoraUltimaConexion()); ?>"  placeholder="FechaHoraUltimaConexion">
+                        <input type="text" name="T01_Perfil" disabled value="Perfil : <?php echo $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_perfil(); ?>"  placeholder="Perfil">
                         <section>
                             <input type="submit" name="btnupdate" class="w3-hover-green w3-hover-text-black" value="Editar">
                             <input type="submit" name="btncancelar" class="w3-hover-red w3-hover-text-white" value="Cancel">
