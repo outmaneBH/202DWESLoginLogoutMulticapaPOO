@@ -1,7 +1,7 @@
 <?php
 /*Si el usuario ha pulsado en registrar cambiamos la vista y devolver la pagina de registrar*/
-if (isset($_REQUEST['Signin'])) {
-    $_SESSION['paginaEnCurso'] = $controllers['registrar'];
+if (isset($_REQUEST['cancel'])) {
+    $_SESSION['paginaEnCurso'] = 'inicioPublico';
     header("Location:index.php");
     exit;
 }
@@ -34,7 +34,7 @@ if (isset($_REQUEST['btnlogin'])) {
             }
             
             /*LLevamos el usuario a la pagina de inicio*/
-            $_SESSION['paginaEnCurso'] = $controllers['inicio'];
+            $_SESSION['paginaEnCurso'] = 'inicio';
             header('Location: index.php');
             exit;
         }
@@ -44,6 +44,6 @@ if (isset($_REQUEST['btnlogin'])) {
 }
 
 /* meter la vista de login en un variable y devolver layout */
-$paginaEnCurso = $views['login'];
+$paginaEnCurso = 'login';
 require_once $views['layout'];
 ?>

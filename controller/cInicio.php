@@ -8,13 +8,13 @@ if (isset($_REQUEST['logout'])) {
 
 /*cambiamos la vista a editar el usuario*/
 if (isset($_REQUEST['editPerfil'])) {
-    $_SESSION['paginaEnCurso'] = $controllers['editar'];
+    $_SESSION['paginaEnCurso'] = 'editar';
     header("Location:index.php");
     exit;
 }
 /*cambiamos la vista a borrar para el usuario puede eliminar su cuenta*/
 if (isset($_REQUEST['deleteAccount'])) {
-    $_SESSION['paginaEnCurso'] = $controllers['borrar'];
+    $_SESSION['paginaEnCurso'] = 'borrar';
     header("Location:index.php");
     exit;
 }
@@ -30,7 +30,7 @@ $LastTimeAccess= $_SESSION['T01_FechaHoraUltimaConexionAnterior'];
 
 
 /*meter la vista de inicio en la variable y devolver layout */
-$paginaEnCurso=$views['inicio'];
+$paginaEnCurso='inicio';
 require_once $views['layout'];
 ?>
 

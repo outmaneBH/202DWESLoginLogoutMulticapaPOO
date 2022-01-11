@@ -2,7 +2,7 @@
 
 /* Si el usuario ha pulsado en cancelar cambiamos la vista y devolver la pagina de login */
 if (isset($_REQUEST['btncancelar'])) {
-    $_SESSION['paginaEnCurso'] = $controllers['login'];
+    $_SESSION['paginaEnCurso'] = 'inicioPublico';
     header("Location:index.php");
     exit;
 }
@@ -69,7 +69,7 @@ if ($entradaOK) {
             $_SESSION['T01_FechaHoraUltimaConexionAnterior'] = $ultimaConexionAnterior;
         }
         //Se dirige al usuario al inicio
-        $_SESSION['paginaEnCurso'] = $controllers['inicio'];
+        $_SESSION['paginaEnCurso'] = 'inicio';
         header('Location: index.php');
         exit;
     }
@@ -78,7 +78,7 @@ if ($entradaOK) {
     //Mostrar formulario
 
     /* meter la vista de registrar en un variable y devolver layout */
-    $paginaEnCurso = $views['registrar'];
+    $paginaEnCurso = 'registrar';
     require_once $views['layout'];
 }
 ?>

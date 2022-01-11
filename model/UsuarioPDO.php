@@ -24,18 +24,14 @@ class UsuarioPDO implements interfaceUsuarioDB {
             $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
             $resultado = $resultadoConsulta->fetchObject();
             if ($resultado != null) {
+                self::registrarUltimaConexion($codUsuario);
+                
                 $valideUsuario = new Usuario($resultado->T01_CodUsuario,
                         $resultado->T01_Password,
                         $resultado->T01_DescUsuario,
                         $resultado->T01_NumConexiones,
                         $resultado->T01_FechaHoraUltimaConexion,
                         $resultado->T01_Perfil);
-
-                $ofecha = new DateTime();
-                $time = $ofecha->getTimestamp();
-
-                $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $codUsuario . "'";
-                DBPDO::ejecutaConsulta($sql2);
             }
         } catch (PDOException $exception) {
             /* llamar al fichero de configuracion de Catch */
@@ -70,12 +66,13 @@ class UsuarioPDO implements interfaceUsuarioDB {
         }
         return $altaUsuario;
     }
-/**
- * 
- * @param type $DescUsuario
- * @param type $CodUsuario
- * @return true si ha modifacado el usuario con el codigo dado y el campo modificado $DescUsuario
- */
+
+    /**
+     * 
+     * @param type $DescUsuario
+     * @param type $CodUsuario
+     * @return true si ha modifacado el usuario con el codigo dado y el campo modificado $DescUsuario
+     */
     public static function modificarUsuario($DescUsuario, $CodUsuario) {
         $update = false;
         try {
@@ -112,14 +109,12 @@ class UsuarioPDO implements interfaceUsuarioDB {
         }
         return $delete;
     }
-    
-    
+
     /**
      * 
      * @param type $CodUsuario para validarlo
      * @return string devuelve un mensaje si el codigo del usuario existe en la base de datos.
      */
-
     public static function validarCodNoExiste($CodUsuario) {
         $CodNoExiste = null;
         try {
@@ -138,6 +133,28 @@ class UsuarioPDO implements interfaceUsuarioDB {
             unset($miDB);
         }
         return $CodNoExiste;
+    }
+
+    public static function registrarUltimaConexion($codUsuario) {
+        $fechaCambiada = false;
+        try {
+            $ofecha = new DateTime();
+            $time = $ofecha->getTimestamp();
+
+            $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $codUsuario . "'";
+            $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
+
+            $resultado = $resultadoConsulta->rowCount();
+            if ($resultado > 0) {
+                $fechaCambiada = true;
+            }
+        } catch (PDOException $exception) {
+            /* llamar al fichero de configuracion de Catch */
+            require 'error/catchConfig.php';
+        } finally {
+            unset($miDB);
+        }
+        return $fechaCambiada;
     }
 
 }

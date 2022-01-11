@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="mynavbar">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <h3>Web Application Login-Logout Multicapa POO</h3>
+                            <h3>Web Application LoginLogout Multicapa POO</h3>
                         </li>
                     </ul>
 
