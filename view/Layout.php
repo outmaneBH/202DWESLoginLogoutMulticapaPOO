@@ -8,7 +8,7 @@ require_once $vistaEncurso;
         <!-- Section: Social media -->
         <section class="mb-3">
             <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/outmaneBH/AplicacionLoginLogoutMulticapaPOO" target="_blank" role="button">
+            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/outmaneBH/202DWESLoginLogoutMulticapaPOO" target="_blank" role="button">
                 <img id="git" style="width: 30px;height:30px; " src="webroot/media/git.png" alt="github"/>  
             </a>
         </section>
