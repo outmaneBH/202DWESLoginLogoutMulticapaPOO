@@ -1,7 +1,7 @@
 <?php
 /*Si el usuario ha pulsado en registrar cambiamos la vista y devolver la pagina de registrar*/
 if (isset($_REQUEST['cancel'])) {
-    $_SESSION['paginaEnCurso'] = 'inicioPublico';
+    $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
     header("Location:index.php");
     exit;
 }
@@ -45,5 +45,6 @@ if (isset($_REQUEST['btnlogin'])) {
 
 /* meter la vista de login en un variable y devolver layout */
 $paginaEnCurso = 'login';
+$_SESSION['paginaAnterior']='inicioPublico';
 require_once $views['layout'];
 ?>

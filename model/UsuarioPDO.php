@@ -25,7 +25,7 @@ class UsuarioPDO implements interfaceUsuarioDB {
             $resultado = $resultadoConsulta->fetchObject();
             if ($resultado != null) {
                 self::registrarUltimaConexion($codUsuario);
-                
+
                 $valideUsuario = new Usuario($resultado->T01_CodUsuario,
                         $resultado->T01_Password,
                         $resultado->T01_DescUsuario,
@@ -35,7 +35,9 @@ class UsuarioPDO implements interfaceUsuarioDB {
             }
         } catch (PDOException $exception) {
             /* llamar al fichero de configuracion de Catch */
-            require 'error/catchConfig.php';
+            $_SESSION['CodeError'] = $exception->getCode();
+            $_SESSION['MsgError'] = $exception->getMessage();
+            $_SESSION['paginaEnCurso'] = 'error';
         } finally {
             unset($miDB);
         }

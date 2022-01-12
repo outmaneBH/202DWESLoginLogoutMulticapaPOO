@@ -23,8 +23,10 @@ require_once "model/DBPDO.php";
 
 /* Añadir controladores en Arrays */
 $controllers = [
+    "error" => "controller/cError.php",
     "login" => "controller/cLogin.php",
     "inicioPublico" => "controller/cInicioPublico.php",
+    "wip" => "controller/cWIP.php",
     "registrar" => "controller/cRegistro.php",
     "inicio" => "controller/cInicio.php",
     "editar" => "controller/cMiCuenta.php",
@@ -34,7 +36,9 @@ $controllers = [
 /* Añadir vistas en Arrays */
 $views = [
     "layout" => "view/Layout.php",
+    "error" => "view/vError.php",
     "inicioPublico" => "view/vInicioPublico.php",
+    "wip" => "view/vWIP.php",
     "login" => "view/vLogin.php",
     "registrar" => "view/vRegistro.php",
     "inicio" => "view/vInicio.php",
@@ -42,6 +46,6 @@ $views = [
     "borrar" => "view/vBorrarCuenta.php"
 ];
 
-/* Iniciamos la session para saber que vista esta en curso y que usuario*/
+/* Iniciamos la session para saber que vista esta en curso y que usuario */
 session_start();
 ?>
