@@ -6,7 +6,12 @@ if (isset($_REQUEST['logout'])) {
     header("Location:index.php");
     exit;
 }
-if (isset($_REQUEST['mtoDepartamentos']) || isset($_REQUEST['detalle'])) {
+if (isset($_REQUEST['detalle'])) {
+     $_SESSION['paginaEnCurso'] = 'detalle';
+    header("Location:index.php");
+    exit;
+}
+if (isset($_REQUEST['mtoDepartamentos'])) {
     $_SESSION['paginaEnCurso'] = 'wip';
     header("Location:index.php");
     exit;
