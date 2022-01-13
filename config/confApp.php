@@ -15,6 +15,7 @@ define("OPCIONAL", 0);
 $error = '';
 
 /* Añadir models */
+require_once "model/AppError.php";
 require_once "model/interfaceDB.php";
 require_once "model/interfaceUsuarioDB.php";
 require_once "model/Usuario.php";

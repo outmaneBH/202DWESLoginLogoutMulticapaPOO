@@ -110,12 +110,12 @@
                             </tr>
                             <tr>
                                 <td>NumAccesos</td>
-                                <td><?php echo $usuarioSession->get_numAccesos(); ?></td>
+                                <td><?php echo $usuarioSession->get_numConexiones(); ?></td>
                             </tr>
                             <tr>
                                 <td>Ultima Conexion</td>
 
-                                <td><?php echo ($usuarioSession->get_numAccesos() >= 1) ?  date('d-m-Y  , H:i:s', $usuarioSession->get_fechaHoraUltimaConexion()):'-'; ?></td>
+                                <td><?php echo ($usuarioSession->get_numConexiones() >= 1) ?  date('d-m-Y  , H:i:s', $usuarioSession->get_fechaHoraUltimaConexion()):'-'; ?></td>
                             </tr>
                             <tr>
                                 <td>Perfil</td>

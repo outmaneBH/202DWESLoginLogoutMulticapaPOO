@@ -24,14 +24,15 @@ class UsuarioPDO implements interfaceUsuarioDB {
             $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
             $resultado = $resultadoConsulta->fetchObject();
             if ($resultado != null) {
-                self::registrarUltimaConexion($codUsuario);
-
+                
                 $valideUsuario = new Usuario($resultado->T01_CodUsuario,
-                        $resultado->T01_Password,
-                        $resultado->T01_DescUsuario,
-                        $resultado->T01_NumConexiones,
-                        $resultado->T01_FechaHoraUltimaConexion,
-                        $resultado->T01_Perfil);
+                $resultado->T01_Password,
+                $resultado->T01_DescUsuario,
+                $resultado->T01_NumConexiones,
+                $resultado->T01_FechaHoraUltimaConexion,
+                $resultado->T01_FechaHoraUltimaConexionAnterior,
+                $resultado->T01_Perfil,
+                $resultado->T01_ImagenUsuario);
             }
         } catch (PDOException $exception) {
             /* llamar al fichero de configuracion de Catch */
@@ -137,18 +138,24 @@ class UsuarioPDO implements interfaceUsuarioDB {
         return $CodNoExiste;
     }
 
-    public static function registrarUltimaConexion($codUsuario) {
-        $fechaCambiada = false;
+    public static function registrarUltimaConexion($CodUsuario) {
+        $Usuario = null;
         try {
             $ofecha = new DateTime();
             $time = $ofecha->getTimestamp();
 
-            $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $codUsuario . "'";
+            $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $CodUsuario . "'";
             $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
 
             $resultado = $resultadoConsulta->rowCount();
             if ($resultado > 0) {
-                $fechaCambiada = true;
+                $Usuario = new Usuario($resultado->T01_CodUsuario,
+                $resultado->T01_Password,
+                $resultado->T01_DescUsuario,
+                $resultado->T01_NumConexiones,
+                $resultado->T01_FechaHoraUltimaConexion,
+                date('d-m-Y  , H:i:s',$resultado->T01_FechaHoraUltimaConexion)
+            );
             }
         } catch (PDOException $exception) {
             /* llamar al fichero de configuracion de Catch */
@@ -156,7 +163,7 @@ class UsuarioPDO implements interfaceUsuarioDB {
         } finally {
             unset($miDB);
         }
-        return $fechaCambiada;
+        return $Usuario;
     }
 
 }

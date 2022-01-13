@@ -34,7 +34,7 @@ $objectUsuario = $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'];
 
 /* Los variables */
 $USER = $objectUsuario->get_codUsuario();
-$NumAcces = $objectUsuario->get_numAccesos();
+$NumAcces = $objectUsuario->get_numConexiones();
 $Desc = $objectUsuario->get_descUsuario();
 $LastTimeAccess = $_SESSION['T01_FechaHoraUltimaConexionAnterior'];
 
