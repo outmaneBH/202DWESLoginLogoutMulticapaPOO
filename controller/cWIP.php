@@ -5,7 +5,6 @@ if (isset($_REQUEST['cancelwip'])) {
     exit;
 }
 
-$paginaEnCurso = 'wip';
 $_SESSION['paginaAnterior']='inicio';
 require_once $views['layout'];
 

@@ -1,14 +1,18 @@
 <?php
 
-if (isset($_REQUEST['btndestroy'])) {
-    $_SESSION['paginaEnCurso'] = 'login';
-    session_destroy(); 
+if (isset($_REQUEST['cancel'])) {
+    $_SESSION['paginaEnCurso'] = $_SESSION['error']->get_paginaSiguiente;
     header("Location:index.php");
     exit;
 }
 
-$code = $_SESSION['CodeError'];
-$msg = $_SESSION['MsgError'];
+/* creamos array donde almacenamos los datos de la session del Error */
 
-$paginaEnCurso = 'error';
+$aError = [
+    'codError' => $_SESSION['error']->get_codError(),
+    'msgError' => $_SESSION['error']->get_descError(),
+    'archivoError' => $_SESSION['error']->get_archivoError(),
+    'lineaError' => $_SESSION['error']->get_lineaError()
+];
 require_once $views['layout'];
+?>

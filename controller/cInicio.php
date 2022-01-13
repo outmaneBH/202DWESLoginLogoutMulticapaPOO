@@ -39,8 +39,7 @@ $Desc = $objectUsuario->get_descUsuario();
 $LastTimeAccess = $_SESSION['T01_FechaHoraUltimaConexionAnterior'];
 
 
-/* meter la vista de inicio en la variable y devolver layout */
-$paginaEnCurso = 'inicio';
+
 $_SESSION['paginaAnterior']='login';
 require_once $views['layout'];
 ?>

@@ -19,30 +19,21 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function validarUsuario($codUsuario, $password) {
         $valideUsuario = null;
-        try {
-            $sql = "SELECT * FROM T01_Usuario WHERE T01_CodUsuario='" . $codUsuario . "' and T01_Password=sha2('" . $codUsuario . $password . "',256)";
-            $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
-            $resultado = $resultadoConsulta->fetchObject();
-            if ($resultado != null) {
-                
-                $valideUsuario = new Usuario($resultado->T01_CodUsuario,
-                $resultado->T01_Password,
-                $resultado->T01_DescUsuario,
-                $resultado->T01_NumConexiones,
-                $resultado->T01_FechaHoraUltimaConexion,
-                $resultado->T01_FechaHoraUltimaConexionAnterior,
-                $resultado->T01_Perfil,
-                $resultado->T01_ImagenUsuario);
-            }
-        } catch (PDOException $exception) {
-            /* llamar al fichero de configuracion de Catch */
-            $_SESSION['CodeError'] = $exception->getCode();
-            $_SESSION['MsgError'] = $exception->getMessage();
-            $_SESSION['paginaEnCurso'] = 'error';
-        } finally {
-            unset($miDB);
-        }
 
+        $sql = "SELECT * FROM T01_Usuario WHERE T01_CodUsuario='" . $codUsuario . "' and T01_Password=sha2('" . $codUsuario . $password . "',256)";
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
+        $resultado = $resultadoConsulta->fetchObject();
+        if ($resultado != null) {
+
+            $valideUsuario = new Usuario($resultado->T01_CodUsuario,
+                    $resultado->T01_Password,
+                    $resultado->T01_DescUsuario,
+                    $resultado->T01_NumConexiones,
+                    time(),
+                    $resultado->T01_FechaHoraUltimaConexion,
+                    $resultado->T01_Perfil,
+                    $resultado->T01_ImagenUsuario);
+        }
         return $valideUsuario;
     }
 
@@ -55,18 +46,13 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function altaUsuario($CodUsuario, $Password, $DescUsuario) {
         $altaUsuario = false;
-        try {
-            $sql2 = "INSERT INTO T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario)  VALUES ('" . $CodUsuario . "', sha2('" . $CodUsuario . $Password . "',256), '" . $DescUsuario . "')";
-            $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
-            if ($resultadoConsulta->rowCount() > 0) {
-                $altaUsuario = true;
-            }
-        } catch (PDOException $exception) {
-            /* llamar al fichero de configuracion de Catch */
-            require 'error/catchConfig.php';
-        } finally {
-            unset($miDB);
+
+        $sql2 = "INSERT INTO T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario)  VALUES ('" . $CodUsuario . "', sha2('" . $CodUsuario . $Password . "',256), '" . $DescUsuario . "')";
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
+        if ($resultadoConsulta->rowCount() > 0) {
+            $altaUsuario = true;
         }
+
         return $altaUsuario;
     }
 
@@ -78,16 +64,11 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function modificarUsuario($DescUsuario, $CodUsuario) {
         $update = false;
-        try {
-            $sql = "UPDATE T01_Usuario SET T01_DescUsuario='" . $DescUsuario . "' WHERE T01_CodUsuario='" . $CodUsuario . "'";
-            $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
-            $update = true;
-        } catch (PDOException $exception) {
-            /* llamar al fichero de configuracion de Catch */
-            require 'error/catchConfig.php';
-        } finally {
-            unset($miDB);
-        }
+
+        $sql = "UPDATE T01_Usuario SET T01_DescUsuario='" . $DescUsuario . "' WHERE T01_CodUsuario='" . $CodUsuario . "'";
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
+        $update = true;
+
         return $update;
     }
 
@@ -97,19 +78,14 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function borrarUsuario($CodUsuario) {
         $delete = false;
-        try {
-            $sql = "DELETE FROM T01_Usuario WHERE T01_CodUsuario='" . $CodUsuario . "'";
-            $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
-            $resultado = $resultadoConsulta->rowCount();
-            if ($resultado > 0) {
-                $delete = true;
-            }
-        } catch (PDOException $exception) {
-            /* llamar al fichero de configuracion de Catch */
-            require 'error/catchConfig.php';
-        } finally {
-            unset($miDB);
+
+        $sql = "DELETE FROM T01_Usuario WHERE T01_CodUsuario='" . $CodUsuario . "'";
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
+        $resultado = $resultadoConsulta->rowCount();
+        if ($resultado > 0) {
+            $delete = true;
         }
+
         return $delete;
     }
 
@@ -120,50 +96,34 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function validarCodNoExiste($CodUsuario) {
         $CodNoExiste = null;
-        try {
-            $sql = "SELECT T01_CodUsuario FROM T01_Usuario WHERE T01_CodUsuario='" . $CodUsuario . "'";
-            $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
-            $resultado = $resultadoConsulta->fetchObject();
 
-            if ($resultado != null) {
-                $CodNoExiste = "Ya hay Cuenta con este Usuario.";
-            }
-            /* llamar al fichero de configuracion de Catch */
-        } catch (PDOException $exception) {
-            /* llamar al fichero de configuracion de Catch */
-            require 'error/catchConfig.php';
-        } finally {
-            unset($miDB);
+        $sql = "SELECT T01_CodUsuario FROM T01_Usuario WHERE T01_CodUsuario='" . $CodUsuario . "'";
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
+        $resultado = $resultadoConsulta->fetchObject();
+
+        if ($resultado != null) {
+            $CodNoExiste = "Ya hay Cuenta con este Usuario.";
         }
+
+
         return $CodNoExiste;
     }
 
     public static function registrarUltimaConexion($CodUsuario) {
-        $Usuario = null;
-        try {
-            $ofecha = new DateTime();
-            $time = $ofecha->getTimestamp();
+        $cambiado = false;
 
-            $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $CodUsuario . "'";
-            $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
+        $ofecha = new DateTime();
+        $time = $ofecha->getTimestamp();
 
-            $resultado = $resultadoConsulta->rowCount();
-            if ($resultado > 0) {
-                $Usuario = new Usuario($resultado->T01_CodUsuario,
-                $resultado->T01_Password,
-                $resultado->T01_DescUsuario,
-                $resultado->T01_NumConexiones,
-                $resultado->T01_FechaHoraUltimaConexion,
-                date('d-m-Y  , H:i:s',$resultado->T01_FechaHoraUltimaConexion)
-            );
-            }
-        } catch (PDOException $exception) {
-            /* llamar al fichero de configuracion de Catch */
-            require 'error/catchConfig.php';
-        } finally {
-            unset($miDB);
+        $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $CodUsuario . "'";
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
+
+        $resultado = $resultadoConsulta->rowCount();
+        if ($resultado > 0) {
+            $cambiado = true;
         }
-        return $Usuario;
+
+        return $cambiado;
     }
 
 }

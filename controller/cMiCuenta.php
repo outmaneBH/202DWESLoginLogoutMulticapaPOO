@@ -63,8 +63,6 @@ if ($entradaOK) {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
 
-    /* meter la vista de editar en un variable y devolver layout */
-    $paginaEnCurso ='editar';
     require_once $views['layout'];
 }
 ?>

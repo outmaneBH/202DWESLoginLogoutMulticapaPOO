@@ -29,7 +29,5 @@ if (isset($_REQUEST['btndelete'])) {
     }
 }
 
-/* meter la vista de borrar en un variable y devolver layout */
-$paginaEnCurso = 'borrar';
 require_once $views['layout'];
 ?>

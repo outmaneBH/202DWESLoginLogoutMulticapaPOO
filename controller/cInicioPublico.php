@@ -13,7 +13,5 @@ if (isset($_REQUEST['btnregister'])) {
 }
 
 
-/* meter la vista de login en un variable y devolver layout */
-$paginaEnCurso = 'inicioPublico';
 require_once $views['layout'];
 ?>

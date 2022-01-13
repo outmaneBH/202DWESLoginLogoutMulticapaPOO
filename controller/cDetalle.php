@@ -5,7 +5,7 @@ if (isset($_REQUEST['cancel'])) {
     exit;
 }
 
-$paginaEnCurso = 'detalle';
+
 $_SESSION['paginaAnterior']='inicio';
 require_once $views['layout'];
 

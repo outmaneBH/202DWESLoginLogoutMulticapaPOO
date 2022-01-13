@@ -17,33 +17,36 @@
                 margin: 10px;
             }
             #supGlob{
-                margin-left: 15%;
+                margin-left:2%;
                 width: 100%;
             }
+
+
             table ,tr,td{
                 border: 2px solid black;
                 border-collapse: collapse;
 
+                font-size: 16px;
             }
+
 
         </style>
     </head>
     <body>
-       <form action="">
+        <form action="">
             <button style="margin: 10px;font-weight: bold;float: left;" name="cancel" class="btn btn-primary" type="submit">Cancel</button>
         </form>
         <div id="supGlob">
             <?php
-          
             echo '<h3>Mostrar el contenido de las variables superglobales:</h3>  ';
             // El contenido de $_SESSION
             echo '<h3>Mostrar el contenido de $_SESSION :</h3>  ';
-            echo '<table><tr><th>Clave</th><th>Valor</th></th>';
-            foreach ($_SESSION as $Clave => $Valor) {
+            echo '<table id="t1"><tr><th>Clave</th><th>Valor</th></th>';
+            foreach ($_SESSION as $key => $value) {
                 echo '<tr>';
-                echo "<td>$Clave</td>";
-                echo "<td>$Valor</td>";
-                echo '</tr>';
+                echo "<td>$key</td><td><pre>";
+                print_r($value); // print_r porque pueden ser objetos.
+                echo '</pre></td></tr>';
             }
             echo '</table>';
 
@@ -69,10 +72,9 @@
                 echo '</tr>';
             }
             echo '</table>';
-            
             ?>
 
         </div>
-  <?php echo phpinfo(); ?> 
-       
+        <?php echo phpinfo(); ?> 
+
 

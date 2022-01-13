@@ -56,8 +56,8 @@ if ($entradaOK) {
         if ($ultimaConexionAnterior != null) {
             $_SESSION['T01_FechaHoraUltimaConexionAnterior'] = $ultimaConexionAnterior; //ademas alamcenamos la ultimaEntrada
         }
-        $nuevo = UsuarioPDO::registrarUltimaConexion($objetoUsuario->get_codUsuario()); //modificar la fecha y la ultima conection
-        $objetoUsuario = $nuevo;
+         UsuarioPDO::registrarUltimaConexion($objetoUsuario->get_codUsuario()); //modificar la fecha y la ultima conection
+        
         
         /* LLevamos el usuario a la pagina de inicio */
         $_SESSION['paginaEnCurso'] = 'inicio';
@@ -68,8 +68,7 @@ if ($entradaOK) {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
 
-    /* meter la vista de login en un variable y devolver layout */
-    $paginaEnCurso = 'login';
+
     $_SESSION['paginaAnterior'] = 'inicioPublico';
     require_once $views['layout'];
 }
