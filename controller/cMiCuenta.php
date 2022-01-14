@@ -1,14 +1,14 @@
 <?php
 /* Si el usuario ha pulsado en borrarcuenta cambiamos la vista y devolver la pagina de borrarcuenta */
 if (isset($_REQUEST['btndelete'])) {
-    $_SESSION['vistaEnCurso'] = $controllers['borrar'];
+    $_SESSION['paginaEnCurso'] = 'borrar';
     header("Location:index.php");
     exit;
 }
 
 /* Si el usuario ha pulsado en cancelar cambiamos la vista y devolver la pagina de inicio */
 if (isset($_REQUEST['btncancelar'])) {
-    $_SESSION['vistaEnCurso'] = $controllers['inicio'];
+    $_SESSION['paginaEnCurso'] = 'inicio';
     header("Location:index.php");
     exit;
 }
@@ -18,7 +18,7 @@ if (isset($_REQUEST['btnupdatePass'])) {
     header("Location:error/enConstruccion.html");
     exit;
 }
-
+$usuarioSession= $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'];
 /* Varible de entrada correcta inicializada a true */
 $entradaOK = true;
 
@@ -48,22 +48,21 @@ if (isset($_REQUEST['btnupdate'])) {
 if ($entradaOK) {
     //Tratamiento del formulario - Tratamiento de datos OK
     //Si los datos estan correctos
-    $CodUsuario = $_SESSION['usuario202DWESAppLoginLogout']->get_codUsuario(); //metemos el codigo de la session en un variable
+    $CodUsuario = $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_codUsuario(); //metemos el codigo de la session en un variable
 
     $updateUsuario = UsuarioPDO::modificarUsuario($_REQUEST['DescUsuario'], $CodUsuario); //hagamos la actualizacion
 
     if ($updateUsuario) {//Si es true cambamos la descripcion de la session con set_descUsuario y cambiar vista a inicio.
-        $_SESSION['usuario202DWESAppLoginLogout']->set_descUsuario($_REQUEST['DescUsuario']);
-        $_SESSION['vistaEnCurso'] = $controllers['inicio'];
+        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->set_descUsuario($_REQUEST['DescUsuario']);
+        $_SESSION['paginaEnCurso'] = 'inicio';
         header('Location: index.php');
         exit;
     }
+   
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
 
-    /* meter la vista de editar en un variable y devolver layout */
-    $vistaEncurso = $views['editar'];
     require_once $views['layout'];
 }
 ?>

@@ -1,25 +1,28 @@
 <?php
+
 class Usuario {
 
     // Properties de la clase Usuario
     private $codUsuario;
     private $password;
     private $descUsuario;
-    private $numAccesos;
+    private $numConexiones;
     private $fechaHoraUltimaConexion;
     private $fechaHoraUltimaConexionAnterior;
     private $perfil;
+    private $imagenUsuario;
 
-    
     /* constroctor */
-    function __construct($codUsuario, $password, $descUsuario, $numAccesos, $fechaHoraUltimaConexion, $perfil) {
+
+    function __construct($codUsuario, $password, $descUsuario, $numConexiones, $fechaHoraUltimaConexion,$fechaHoraUltimaConexionAnterior, $perfil,$imagenUsuario) {
         $this->codUsuario = $codUsuario;
         $this->password = $password;
         $this->descUsuario = $descUsuario;
-        $this->numAccesos = $numAccesos;
+        $this->numConexiones = $numConexiones;
         $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
-       // $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
+        $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
         $this->perfil = $perfil;
+        $this->imagenUsuario = $imagenUsuario;
     }
 
     /* get y set de codUsuario */
@@ -54,12 +57,12 @@ class Usuario {
 
     /* get y set de numAccesos */
 
-    function get_numAccesos() {
-        return $this->numAccesos;
+    function get_numConexiones() {
+        return $this->numConexiones;
     }
 
-    function set_numAccesos($numAccesos) {
-        $this->numAccesos = $numAccesos;
+    function set_numAccesos($numConexiones) {
+        $this->numConexiones = $numConexiones;
     }
 
     /* get y set de fechaHoraUltimaConexion */
@@ -91,6 +94,16 @@ class Usuario {
     function set_perfil($perfil) {
         $this->perfil = $perfil;
     }
+    /* get y set de iamgen */
+
+    function get_imagenUsuario() {
+        return $this->imagenUsuario;
+    }
+
+    function set_imagenUsuario($imagenUsuario) {
+        $this->imagenUsuario = $imagenUsuario;
+    }
+
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 /* Meter el variable en curso de que vista este en ejecucion:require $vistaEnCurso; */
-require_once $vistaEncurso;
+require_once $views[$_SESSION['paginaEnCurso']];
 ?>
 <footer style="position: fixed;bottom: 0;width: 100%" class="bg-dark text-center text-white">
     <!-- Grid container -->
@@ -8,7 +8,7 @@ require_once $vistaEncurso;
         <!-- Section: Social media -->
         <section class="mb-3">
             <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/outmaneBH/AplicacionLoginLogoutMulticapaPOO" target="_blank" role="button">
+            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/outmaneBH/202DWESLoginLogoutMulticapaPOO" target="_blank" role="button">
                 <img id="git" style="width: 30px;height:30px; " src="webroot/media/git.png" alt="github"/>  
             </a>
         </section>
@@ -19,6 +19,7 @@ require_once $vistaEncurso;
         Copyrights © 2021 
         <a class="text-white" href="../index.html">OUTMANE BOUHOU</a>
         . All rights reserved.
+         <p>Ultima actualizacion : 14/01/2022 version 1 ( v.1 LoginLogout MultiCapa POO )</p>
     </div>
     <!-- Copyright -->
 </footer>

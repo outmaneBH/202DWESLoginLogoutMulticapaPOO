@@ -11,7 +11,7 @@
             body{
                 background-image: url(webroot/media/building-g458550d32_1920.jpg);
                 background-repeat: no-repeat;
-                background-size: cover;
+                 object-fit: contain;
             }
             #form1{
                 height:  310px;
@@ -54,6 +54,23 @@
                 border-radius: 25px;
                 width: 100px;
             }
+            section input:nth-of-type(1){
+                border: 2px solid blue;
+                align-self: center;
+                border-radius: 25px;
+                width: 100px;
+                display: inline;
+            }
+            section input:nth-of-type(2){
+                display: inline;
+                border: 2px solid red;
+                align-self: center;
+                border-radius: 25px;
+                width: 100px;
+            }
+            section input:nth-of-type(1),section input:nth-of-type(2){
+                position: relative;  
+            }
             ::placeholder{
                 text-transform: uppercase;
                 color: #978686;
@@ -61,14 +78,10 @@
         </style>
     </head>
     <body>
-
         <div class="w3-bar w3-black  ">
             <p style="padding: 10px;font-size: 18px;font-weight: bold;" class="w3-center ">Web Application Login-Logout</p>
         </div>
-        <form action="">
-            <button style="margin: 10px;font-weight: bold;float: right;" name="Signin" class="btn btn-success" type="submit">Registrar</button>
-        </form>
-
+       
         <div class="container mt-3">
             <div class="d-flex mb-3">
                 <div class="p-2  flex-fill"></div>
@@ -77,8 +90,10 @@
                         <span> Login </span>
                         <input type="text" name="username"  value=""  placeholder="username">
                         <input type="password" name="password" value=""  placeholder="password"> 
-                        <input type="submit" name="btnlogin" class="w3-hover-green w3-hover-text-black" value="Next">
-
+                        <section>
+                            <input type="submit" name="btnlogin" class="w3-hover-blue w3-hover-text-white" value="Next">
+                            <input type="submit" name="cancel" class="w3-hover-red w3-hover-text-black" value="Cancel">
+                        </section>
                         <span><?php echo $error; ?></span>
                     </form> 
                 </div>

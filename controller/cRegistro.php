@@ -2,7 +2,7 @@
 
 /* Si el usuario ha pulsado en cancelar cambiamos la vista y devolver la pagina de login */
 if (isset($_REQUEST['btncancelar'])) {
-    $_SESSION['vistaEnCurso'] = $controllers['login'];
+    $_SESSION['paginaEnCurso'] = 'inicioPublico';
     header("Location:index.php");
     exit;
 }
@@ -63,13 +63,13 @@ if ($entradaOK) {
 
     /* Si todo esta bien metemos su datos en la session y cambiamos la vista a inicio */
     if ($objetoUsuario) {
-        $_SESSION['usuario202DWESAppLoginLogout'] = $objetoUsuario;
+        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $objetoUsuario;
         $ultimaConexionAnterior = $objetoUsuario->get_fechaHoraUltimaConexion();
         if ($ultimaConexionAnterior != null) {
             $_SESSION['T01_FechaHoraUltimaConexionAnterior'] = $ultimaConexionAnterior;
         }
         //Se dirige al usuario al inicio
-        $_SESSION['vistaEnCurso'] = $controllers['inicio'];
+        $_SESSION['paginaEnCurso'] = 'inicio';
         header('Location: index.php');
         exit;
     }
@@ -77,8 +77,6 @@ if ($entradaOK) {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
 
-    /* meter la vista de registrar en un variable y devolver layout */
-    $vistaEncurso = $views['registrar'];
     require_once $views['layout'];
 }
 ?>

@@ -46,9 +46,11 @@
                 margin-top: -30px;
                 margin-bottom: -20px;
             }
-            input:nth-of-type(1){
+            td input:nth-of-type(1){
                 border: 2px solid yellow;
                 border-radius: 25px;
+                padding: 2px;
+                width: 98%;
 
             }
             input:nth-of-type(2),input:nth-of-type(3),input:nth-of-type(4),input:nth-of-type(5){
@@ -56,6 +58,7 @@
                 border-radius: 25px;
 
             }
+
             section input:nth-of-type(1){
                 border: 2px solid green;
                 align-self: center;
@@ -74,6 +77,13 @@
                 text-transform: uppercase;
                 color: #978686;
             }
+            table{
+                border-collapse: collapse;
+                color: white;
+            }
+            tr td:last-child{
+                font-weight: 700;
+            }
         </style>
     </head>
     <body>
@@ -89,17 +99,34 @@
                 <div id="bg" class="p-2 flex-fill bg-dark">
                     <form id="form1" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                         <span> Editar Perfil </span>
-                        <input type="text" name="DescUsuario"   value="<?php echo  $_SESSION['usuario202DWESAppLoginLogout']->get_descUsuario(); ?>"  placeholder="DescUsuario">
-                        <input type="text" name="username" disabled value="<?php echo $_SESSION['usuario202DWESAppLoginLogout']->get_codUsuario(); ?>"  placeholder="username">
-                        <input type="text" name="T01_NumConexiones"  disabled value="Numero de Conexiones : <?php echo $_SESSION['usuario202DWESAppLoginLogout']->get_numAccesos(); ?>"  placeholder="NumConexiones">
-                        <input type="text" name="T01_FechaHoraUltimaConexion" disabled value="UltimaConexion: <?php echo date("d/m/Y H:i:s",$_SESSION['usuario202DWESAppLoginLogout']->get_fechaHoraUltimaConexion()); ?>"  placeholder="FechaHoraUltimaConexion">
-                        <input type="text" name="T01_Perfil" disabled value="Perfil : <?php echo $_SESSION['usuario202DWESAppLoginLogout']->get_perfil(); ?>"  placeholder="Perfil">
+                        <table class="w3-table w3-bordered ">
+                            <tr>
+                                <td>DescUsuario</td>
+                                <td><input type="text" name="DescUsuario"   value="<?php echo $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_descUsuario(); ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>CodUsuario</td>
+                                <td><?php echo $usuarioSession->get_codUsuario(); ?></td>
+                            </tr>
+                            <tr>
+                                <td>NumAccesos</td>
+                                <td><?php echo $usuarioSession->get_numConexiones(); ?></td>
+                            </tr>
+                            <tr>
+                                <td>Ultima Conexion</td>
+
+                                <td><?php echo ($usuarioSession->get_numConexiones() >= 1) ?  date('d-m-Y  , H:i:s', $usuarioSession->get_fechaHoraUltimaConexion()):'-'; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Perfil</td>
+                                <td><?php echo $usuarioSession->get_perfil(); ?></td>
+                            </tr>
+                        </table>
                         <section>
                             <input type="submit" name="btnupdate" class="w3-hover-green w3-hover-text-black" value="Editar">
                             <input type="submit" name="btncancelar" class="w3-hover-red w3-hover-text-white" value="Cancel">
-                            <button style="margin: 10px;" name="btndelete" class="btn btn-danger" type="submit">Delete Account</button>
+                            <button style="float: right;margin-top: 10px;" name="btndelete" class="btn btn-danger" type="submit">Delete Account</button>
                         </section>
-                  
                         <span><?php echo $error; ?></span>
                     </form> 
                 </div>
