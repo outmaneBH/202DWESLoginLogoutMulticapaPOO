@@ -11,7 +11,8 @@
             body{
                 background-image: url(webroot/media/building-g458550d32_1920.jpg);
                 background-repeat: no-repeat;
-                background-size: cover;
+        
+                object-fit: contain;
             }
             input{
                 margin: 10px;
@@ -57,12 +58,12 @@
                 <div class="collapse navbar-collapse" id="mynavbar">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"> 
-                            <p style="font-size: 20px;" class="nav-link" > <?php echo 'Hello , ' . $USER; ?> </p>
+                            <p style="font-size: 20px;" class="nav-link" > <?php echo 'Hello , ' . $aInicioPrivado['codUsuario']; ?> </p>
                         </li>
                     </ul>
                     <form class="d-flex">
                        <!-- <input type="submit" class="btn btn-primary" name="detalle" value="Detalle" type="button"/>-->
-                        <input type="submit" class="btn btn-info" name="logout" value="LogOut <?php echo $USER; ?> " type="button"/>
+                        <input type="submit" class="btn btn-info" name="logout" value="LogOut <?php echo $aInicioPrivado['codUsuario']; ?> " type="button"/>
                         <div class="w3-dropdown-hover w3-right">
                             <img src="webroot/media/icons8-usuario-masculino-en-círculo-48.png" alt="Avatar" style="width:38px;height: 38px;margin-top:10px;" class="w3-circle">
                             <div class="w3-dropdown-content w3-bar-block " style="right:0;margin-top: 20%;">
@@ -78,7 +79,7 @@
         <div class="container-fluid mt-3">
             <div style="float: left;" class="alert">
                <!-- <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> -->
-                <p><?php echo ($NumAcces > 1) ? $Desc . ' es la ' . $NumAcces . ' vez que se connecta y su ultima connexion anterior fue "' . date("d/m/Y H:i:s", $LastTimeAccess) . '"' : $Desc . ' esta es la primera vez que se connecta.'; ?></p>
+                <p><?php echo ($aInicioPrivado['numConexiones'] > 1) ? $aInicioPrivado['descUsuario'] . ' es la ' . $aInicioPrivado['numConexiones'] . ' vez que se connecta y su ultima connexion anterior fue "' . date("d/m/Y H:i:s", $aInicioPrivado['fechaHoraUltimaConexionAnterior']) . '"' : $aInicioPrivado['descUsuario'] . ' esta es la primera vez que se connecta.'; ?></p>
             </div>
             <div style="float: right;width: 320px;background: white;" class="alert">
                 <form id="form2">        

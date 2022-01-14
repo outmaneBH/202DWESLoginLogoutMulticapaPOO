@@ -29,14 +29,18 @@ if (isset($_REQUEST['deleteAccount'])) {
     exit;
 }
 
-/* Meter la session en variables */
+/* Meter la session en un array de variables */
 $objectUsuario = $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'];
+$aInicioPrivado=[
+    'codUsuario'=>$objectUsuario->get_codUsuario(),
+    'descUsuario'=>$objectUsuario->get_descUsuario(),
+    'numConexiones'=>$objectUsuario->get_numConexiones(),
+    'fechaHoraUltimaConexionAnterior'=>$_SESSION['T01_FechaHoraUltimaConexionAnterior'],
+    'perfil'=>$objectUsuario->get_perfil()
+];
 
-/* Los variables */
-$USER = $objectUsuario->get_codUsuario();
-$NumAcces = $objectUsuario->get_numConexiones();
-$Desc = $objectUsuario->get_descUsuario();
-$LastTimeAccess = $_SESSION['T01_FechaHoraUltimaConexionAnterior'];
+
+
 
 
 

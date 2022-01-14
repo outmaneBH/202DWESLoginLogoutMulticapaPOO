@@ -35,7 +35,7 @@
     <body>
         <form action="">
             <button style="margin: 10px;font-weight: bold;float: left;" name="cancel" class="btn btn-primary" type="submit">Cancel</button>
-        </form>
+        </form><br><br>
         <div id="supGlob">
             <?php
             echo '<h3>Mostrar el contenido de las variables superglobales:</h3>  ';

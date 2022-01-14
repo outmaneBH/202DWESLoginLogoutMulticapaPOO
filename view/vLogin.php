@@ -11,7 +11,7 @@
             body{
                 background-image: url(webroot/media/building-g458550d32_1920.jpg);
                 background-repeat: no-repeat;
-                background-size: cover;
+                 object-fit: contain;
             }
             #form1{
                 height:  310px;

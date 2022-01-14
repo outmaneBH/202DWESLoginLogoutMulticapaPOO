@@ -28,9 +28,9 @@ class UsuarioPDO implements interfaceUsuarioDB {
             $valideUsuario = new Usuario($resultado->T01_CodUsuario,
                     $resultado->T01_Password,
                     $resultado->T01_DescUsuario,
-                    $resultado->T01_NumConexiones,
-                    time(),
+                    $resultado->T01_NumConexiones+1,
                     $resultado->T01_FechaHoraUltimaConexion,
+                    time(),
                     $resultado->T01_Perfil,
                     $resultado->T01_ImagenUsuario);
         }
@@ -105,7 +105,6 @@ class UsuarioPDO implements interfaceUsuarioDB {
             $CodNoExiste = "Ya hay Cuenta con este Usuario.";
         }
 
-
         return $CodNoExiste;
     }
 
@@ -120,7 +119,9 @@ class UsuarioPDO implements interfaceUsuarioDB {
 
         $resultado = $resultadoConsulta->rowCount();
         if ($resultado > 0) {
+            
             $cambiado = true;
+            
         }
 
         return $cambiado;

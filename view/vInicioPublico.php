@@ -21,7 +21,7 @@
             body {
                 background-image: url(webroot/media/sky.jpg);
                 background-repeat: no-repeat;
-                background-size: cover;
+                object-fit: cover;
             }
             h3{
                 color: white;
@@ -29,7 +29,22 @@
                 padding: 5px;
                 font-weight: bold;
             }
-            
+            @media screen and (max-width: 639px) {
+                h3 {
+                    font-size: 15px;
+
+                }
+               form input{
+                    width: 100px;
+                }
+                nav  {
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+                   height: 100px;
+                }
+            }
+
         </style>
     </head>
     <body>
