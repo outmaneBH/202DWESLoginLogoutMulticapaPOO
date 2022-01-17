@@ -102,24 +102,24 @@
                         <table class="w3-table w3-bordered ">
                             <tr>
                                 <td>DescUsuario</td>
-                                <td><input type="text" name="DescUsuario"   value="<?php echo $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_descUsuario(); ?>"/></td>
+                                <td><input type="text" name="DescUsuario"   value="<?php echo  $aMiCuenta['descUsuario']; ?>"/></td>
                             </tr>
                             <tr>
                                 <td>CodUsuario</td>
-                                <td><?php echo $usuarioSession->get_codUsuario(); ?></td>
+                                <td><?php echo $aMiCuenta['codUsuario']; ?></td>
                             </tr>
                             <tr>
                                 <td>NumAccesos</td>
-                                <td><?php echo $usuarioSession->get_numConexiones(); ?></td>
+                                <td><?php echo $aMiCuenta['numConexiones'];   ?></td>
                             </tr>
                             <tr>
                                 <td>Ultima Conexion</td>
 
-                                <td><?php echo ($usuarioSession->get_numConexiones() >= 1) ?  date('d-m-Y  , H:i:s', $usuarioSession->get_fechaHoraUltimaConexion()):'-'; ?></td>
+                                <td><?php echo ($aMiCuenta['numConexiones'] >= 1) ?  date('d-m-Y  , H:i:s', $aMiCuenta['fechaHoraUltimaConexion']):'-'; ?></td>
                             </tr>
                             <tr>
                                 <td>Perfil</td>
-                                <td><?php echo $usuarioSession->get_perfil(); ?></td>
+                                <td><?php echo $aMiCuenta['perfil'] ; ?></td>
                             </tr>
                         </table>
                         <section>

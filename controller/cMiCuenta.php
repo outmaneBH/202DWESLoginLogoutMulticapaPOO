@@ -1,4 +1,5 @@
 <?php
+
 /* Si el usuario ha pulsado en borrarcuenta cambiamos la vista y devolver la pagina de borrarcuenta */
 if (isset($_REQUEST['btndelete'])) {
     $_SESSION['paginaEnCurso'] = 'borrar';
@@ -18,7 +19,17 @@ if (isset($_REQUEST['btnupdatePass'])) {
     header("Location:error/enConstruccion.html");
     exit;
 }
-$usuarioSession= $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'];
+
+/* Meter la session en un array de variables */
+$objectUsuario = $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'];
+$aMiCuenta = [
+    'codUsuario' => $objectUsuario->get_codUsuario(),
+    'descUsuario' => $objectUsuario->get_descUsuario(),
+    'numConexiones' => $objectUsuario->get_numConexiones(),
+    'fechaHoraUltimaConexion' => $objectUsuario->get_fechaHoraUltimaConexion(),
+    'fechaHoraUltimaConexionAnterior' => $objectUsuario->get_fechaHoraUltimaConexionAnterior(),
+    'perfil' => $objectUsuario->get_perfil()
+];
 /* Varible de entrada correcta inicializada a true */
 $entradaOK = true;
 
@@ -58,11 +69,10 @@ if ($entradaOK) {
         header('Location: index.php');
         exit;
     }
-   
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
-
+$_SESSION['paginaAnterior']='inicio';
     require_once $views['layout'];
 }
 ?>

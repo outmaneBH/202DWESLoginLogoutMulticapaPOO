@@ -28,7 +28,7 @@ class UsuarioPDO implements interfaceUsuarioDB {
             $valideUsuario = new Usuario($resultado->T01_CodUsuario,
                     $resultado->T01_Password,
                     $resultado->T01_DescUsuario,
-                    $resultado->T01_NumConexiones+1,
+                    $resultado->T01_NumConexiones,
                     $resultado->T01_FechaHoraUltimaConexion,
                     time(),
                     $resultado->T01_Perfil,
@@ -108,23 +108,23 @@ class UsuarioPDO implements interfaceUsuarioDB {
         return $CodNoExiste;
     }
 
-    public static function registrarUltimaConexion($CodUsuario) {
-        $cambiado = false;
+    public static function registrarUltimaConexion($oUsuario) {
+        $cambiadoUsuario = null;
 
         $ofecha = new DateTime();
         $time = $ofecha->getTimestamp();
 
-        $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $CodUsuario . "'";
+        $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $oUsuario->get_codUsuario() . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
 
         $resultado = $resultadoConsulta->rowCount();
         if ($resultado > 0) {
-            
-            $cambiado = true;
-            
+            $oUsuario->set_numConexiones($oUsuario->get_numConexiones() + 1);
+            $oUsuario->set_fechaHoraUltimaConexionAnterior($oUsuario->get_fechaHoraUltimaConexion());
+            $oUsuario->set_fechaHoraUltimaConexion($time);
         }
 
-        return $cambiado;
+        return $oUsuario;
     }
 
 }

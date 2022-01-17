@@ -12,11 +12,16 @@ INSERT INTO T02_Departamento(T02_CodDepartamento,T02_DescDepartamento,T02_FechaC
 /*insert datos en la tabla usuarios*/
 
 INSERT INTO T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario)  VALUES 
-('outmane', sha2('outmanepaso',256), "OUTMANE BOUHOU"),
-('heraclio', sha2('heracliopaso',256), "HERACLIO"),
-('aroa', sha2('aroapaso',256), "AROA"),
-('isabel', sha2('isabelpaso',256), "ISABEL"),
-('alberto', sha2('albertopaso',256), "ALBERTO"),
-('oscar', sha2('oscarpaso',256), "OSCAR"),
-('jhoanna', sha2('jhoannapaso',256), "JHONNA"),
-('Ob2', sha2('Ob2paso',256), "Desc3");
+ ('albertoF',SHA2('albertoFpaso',256),'ALBERTOF'),
+    ('outmane',SHA2('outmanepaso',256),'OUTMANE'),
+    ('rodrigo',SHA2('rodrigopaso',256),'RODRIGO'),
+    ('isabel',SHA2('isabelpaso',256),'ISABEL'),
+    ('david',SHA2('davidpaso',256),'DAVID'),
+    ('aroa',SHA2('aroapaso',256),'AROA'),
+    ('johanna',SHA2('johannapaso',256),'JOHANNA'),
+    ('oscar',SHA2('oscarpaso',256),'OSCAR'),
+    ('sonia',SHA2('soniapaso',256),'SONIA'),
+    ('heraclio',SHA2('heracliopaso',256),'HERACLIO'),
+    ('amor',SHA2('amorpaso',256),'AMOR'),
+    ('antonio',SHA2('antoniopaso',256),'ANTONIO'),
+    ('albertoB',SHA2('albertoBpaso',256),'ALBERTOB');

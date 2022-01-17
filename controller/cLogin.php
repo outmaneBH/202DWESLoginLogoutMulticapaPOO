@@ -41,23 +41,13 @@ if (isset($_REQUEST['btnlogin'])) {
 if ($entradaOK) {
     //Tratamiento del formulario - Tratamiento de datos OK
     //Si los datos estan correctos
-    /* if (!$aErrores["username"] || !$aErrores["password"]) {
-      /* validamos el usuario si existe
-      } else {
-      $error = "! Algo mal ¡";
-      } */
+    
     $objetoUsuario = UsuarioPDO::validarUsuario($_REQUEST['username'], $_REQUEST['password']);
 
     if ($objetoUsuario) {
-
-        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $objetoUsuario; //metemos en la session el usuario seleccionado
-
-        $ultimaConexionAnterior = $objetoUsuario->get_fechaHoraUltimaConexion();
-        if ($ultimaConexionAnterior != null) {
-            $_SESSION['T01_FechaHoraUltimaConexionAnterior'] = $ultimaConexionAnterior; //ademas alamcenamos la ultimaEntrada
-        }
-         UsuarioPDO::registrarUltimaConexion($objetoUsuario->get_codUsuario()); //modificar la fecha y la ultima conection
         
+        $oUsuario=UsuarioPDO::registrarUltimaConexion($objetoUsuario);
+        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $oUsuario;
         
         /* LLevamos el usuario a la pagina de inicio */
         $_SESSION['paginaEnCurso'] = 'inicio';
@@ -67,7 +57,6 @@ if ($entradaOK) {
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
-
 
     $_SESSION['paginaAnterior'] = 'inicioPublico';
     require_once $views['layout'];

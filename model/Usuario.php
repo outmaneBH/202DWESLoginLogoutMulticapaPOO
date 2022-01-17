@@ -31,7 +31,7 @@ class Usuario {
         return $this->codUsuario;
     }
 
-    function set_name($codUsuario) {
+    function set_codUsuario($codUsuario) {
         $this->codUsuario = $codUsuario;
     }
 
@@ -61,7 +61,7 @@ class Usuario {
         return $this->numConexiones;
     }
 
-    function set_numAccesos($numConexiones) {
+    function set_numConexiones($numConexiones) {
         $this->numConexiones = $numConexiones;
     }
 

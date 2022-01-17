@@ -35,14 +35,9 @@ $aInicioPrivado=[
     'codUsuario'=>$objectUsuario->get_codUsuario(),
     'descUsuario'=>$objectUsuario->get_descUsuario(),
     'numConexiones'=>$objectUsuario->get_numConexiones(),
-    'fechaHoraUltimaConexionAnterior'=>$_SESSION['T01_FechaHoraUltimaConexionAnterior'],
+    'fechaHoraUltimaConexionAnterior'=>$objectUsuario->get_fechaHoraUltimaConexionAnterior(),
     'perfil'=>$objectUsuario->get_perfil()
 ];
-
-
-
-
-
 
 $_SESSION['paginaAnterior']='login';
 require_once $views['layout'];

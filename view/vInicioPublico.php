@@ -34,20 +34,20 @@
                     font-size: 15px;
 
                 }
-               form input{
+                form input{
                     width: 100px;
                 }
                 nav  {
-                   display: flex;
-                   justify-content: center;
-                   align-items: center;
-                   height: 100px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100px;
                 }
             }
 
         </style>
     </head>
-    <body>
+    <body onload="startTime()">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="mynavbar">
@@ -71,6 +71,14 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid mt-3">
+        <div  class="container-fluid mt-3">
+            <p style="color: white; font-size: 30px;font-family: cursive;opacity: 0.5 ;background: black;" id="demo"></p>
 
         </div>
+        <script>
+            function startTime() {
+                const date = new Date();
+                document.getElementById("demo").innerHTML = date.toLocaleTimeString();
+                setTimeout(startTime, 1000);
+            }
+        </script>
