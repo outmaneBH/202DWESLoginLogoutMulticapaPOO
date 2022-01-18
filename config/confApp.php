@@ -32,6 +32,7 @@ $controllers = [
     "registrar" => "controller/cRegistro.php",
     "inicio" => "controller/cInicio.php",
     "editar" => "controller/cMiCuenta.php",
+    "cambiarpassword" => "controller/cCambiarPassword.php",
     "borrar" => "controller/cBorrarCuenta.php"
 ];
 
@@ -46,6 +47,7 @@ $views = [
     "registrar" => "view/vRegistro.php",
     "inicio" => "view/vInicio.php",
     "editar" => "view/vMiCuenta.php",
+    "cambiarpassword" => "view/vCambiarPassword.php",
     "borrar" => "view/vBorrarCuenta.php"
 ];
 

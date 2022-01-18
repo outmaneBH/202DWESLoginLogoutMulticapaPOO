@@ -62,11 +62,11 @@ if ($entradaOK) {
     $objetoUsuario = UsuarioPDO::validarUsuario($_REQUEST['username'], $_REQUEST['password']);
 
     /* Si todo esta bien metemos su datos en la session y cambiamos la vista a inicio */
-   if ($objetoUsuario) {
-        
-        $oUsuario=UsuarioPDO::registrarUltimaConexion($objetoUsuario);
+    if ($objetoUsuario) {
+
+        $oUsuario = UsuarioPDO::registrarUltimaConexion($objetoUsuario);
         $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $oUsuario;
-        
+
         /* LLevamos el usuario a la pagina de inicio */
         $_SESSION['paginaEnCurso'] = 'inicio';
         header('Location: index.php');
@@ -75,7 +75,7 @@ if ($entradaOK) {
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
-$_SESSION['paginaAnterior']='inicioPublico';
+    $_SESSION['paginaAnterior'] = 'inicioPublico';
     require_once $views['layout'];
 }
 ?>

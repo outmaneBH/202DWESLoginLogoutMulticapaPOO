@@ -11,7 +11,6 @@ class DBPDO implements interfaceDB {
     public static function ejecutaConsulta($sentenciaSql, $entradaParametros = null) {
         try {
 
-
             /* Establecemos la connection con pdo en global */
             $miDB = new PDO(HOST, USER, PASSWORD);
 
@@ -23,7 +22,7 @@ class DBPDO implements interfaceDB {
             $resultadoConsulta->execute($entradaParametros);
             
         } catch (PDOException $exception) {
-            /* llamar al fichero de configuracion de Catch */
+            /*  */
             $_SESSION['error'] = new AppError($exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine(), 'inicioPublico');
             $_SESSION['paginaEnCurso'] = 'error';
         } finally {

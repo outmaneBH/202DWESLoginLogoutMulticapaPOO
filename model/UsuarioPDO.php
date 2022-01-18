@@ -35,6 +35,7 @@ class UsuarioPDO implements interfaceUsuarioDB {
                     $resultado->T01_ImagenUsuario);
         }
         return $valideUsuario;
+        
     }
 
     /**
@@ -62,8 +63,8 @@ class UsuarioPDO implements interfaceUsuarioDB {
      * @param type $CodUsuario
      * @return true si ha modifacado el usuario con el codigo dado y el campo modificado $DescUsuario
      */
-    public static function modificarUsuario($DescUsuario, $CodUsuario) {
-        $update = false;
+    public static function modificarUsuario($CodUsuario,$DescUsuario) {
+        
 
         $sql = "UPDATE T01_Usuario SET T01_DescUsuario='" . $DescUsuario . "' WHERE T01_CodUsuario='" . $CodUsuario . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql);

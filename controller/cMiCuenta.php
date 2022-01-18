@@ -15,8 +15,8 @@ if (isset($_REQUEST['btncancelar'])) {
 }
 /* Si el usuario ha pulsado en cambiarpassword cambiamos la vista y devolver la pagina de Password */
 if (isset($_REQUEST['btnupdatePass'])) {
-    // $_SESSION['vistaEnCurso'] = $controllers['inicio'];
-    header("Location:error/enConstruccion.html");
+    $_SESSION['paginaEnCurso'] = 'cambiarpassword';
+    header("Location:index.php");
     exit;
 }
 
@@ -61,10 +61,10 @@ if ($entradaOK) {
     //Si los datos estan correctos
     $CodUsuario = $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->get_codUsuario(); //metemos el codigo de la session en un variable
 
-    $updateUsuario = UsuarioPDO::modificarUsuario($_REQUEST['DescUsuario'], $CodUsuario); //hagamos la actualizacion
+    $updateUsuario = UsuarioPDO::modificarUsuario($CodUsuario,$_REQUEST['DescUsuario']); //hagamos la actualizacion
 
     if ($updateUsuario) {//Si es true cambamos la descripcion de la session con set_descUsuario y cambiar vista a inicio.
-        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO']->set_descUsuario($_REQUEST['DescUsuario']);
+        $objectUsuario->set_descUsuario($_REQUEST['DescUsuario']);
         $_SESSION['paginaEnCurso'] = 'inicio';
         header('Location: index.php');
         exit;
@@ -72,7 +72,7 @@ if ($entradaOK) {
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
-$_SESSION['paginaAnterior']='inicio';
+    $_SESSION['paginaAnterior'] = 'inicio';
     require_once $views['layout'];
 }
 ?>
