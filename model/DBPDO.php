@@ -20,15 +20,17 @@ class DBPDO implements interfaceDB {
             /* ejecutamos la Consulta y devolver la en el return */
             $resultadoConsulta = $miDB->prepare($sentenciaSql);
             $resultadoConsulta->execute($entradaParametros);
-            
+            return $resultadoConsulta;
         } catch (PDOException $exception) {
-            /*  */
-            $_SESSION['error'] = new AppError($exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine(), 'inicioPublico');
+
+            $_SESSION['error'] = new AppError($exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine(), $_SESSION['paginaAnterior']);
             $_SESSION['paginaEnCurso'] = 'error';
+            header("Location:index.php");
+            exit;
+            
         } finally {
             unset($miDB);
         }
-        return $resultadoConsulta;
     }
 
 }

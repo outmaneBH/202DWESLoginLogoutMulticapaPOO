@@ -35,7 +35,6 @@ class UsuarioPDO implements interfaceUsuarioDB {
                     $resultado->T01_ImagenUsuario);
         }
         return $valideUsuario;
-        
     }
 
     /**
@@ -63,8 +62,8 @@ class UsuarioPDO implements interfaceUsuarioDB {
      * @param type $CodUsuario
      * @return true si ha modifacado el usuario con el codigo dado y el campo modificado $DescUsuario
      */
-    public static function modificarUsuario($CodUsuario,$DescUsuario) {
-        
+    public static function modificarUsuario($CodUsuario, $DescUsuario) {
+
 
         $sql = "UPDATE T01_Usuario SET T01_DescUsuario='" . $DescUsuario . "' WHERE T01_CodUsuario='" . $CodUsuario . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
@@ -110,22 +109,32 @@ class UsuarioPDO implements interfaceUsuarioDB {
     }
 
     public static function registrarUltimaConexion($oUsuario) {
-        $cambiadoUsuario = null;
-
+        /* Hay que cambiar eso */
         $ofecha = new DateTime();
         $time = $ofecha->getTimestamp();
 
-        $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1 ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $oUsuario->get_codUsuario() . "'";
+        $oUsuario->set_numConexiones($oUsuario->get_numConexiones() + 1);
+        $oUsuario->set_fechaHoraUltimaConexionAnterior($oUsuario->get_fechaHoraUltimaConexion());
+        $oUsuario->set_fechaHoraUltimaConexion($time);
+
+        $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=".$oUsuario->get_numConexiones()." ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $oUsuario->get_codUsuario() . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
 
+      
+        return $oUsuario;
+    }
+
+    public static function cambiarPassword($codUsuario, $password) {
+        $updatePassword = false;
+
+        $sql = "UPDATE T01_Usuario SET T01_Password=sha2('" . $codUsuario . $password . "',256) WHERE T01_CodUsuario='" . $codUsuario . "'";
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
         $resultado = $resultadoConsulta->rowCount();
         if ($resultado > 0) {
-            $oUsuario->set_numConexiones($oUsuario->get_numConexiones() + 1);
-            $oUsuario->set_fechaHoraUltimaConexionAnterior($oUsuario->get_fechaHoraUltimaConexion());
-            $oUsuario->set_fechaHoraUltimaConexion($time);
+            $updatePassword = true;
         }
 
-        return $oUsuario;
+        return $updatePassword;
     }
 
 }

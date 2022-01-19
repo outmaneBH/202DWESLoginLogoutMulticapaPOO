@@ -14,7 +14,7 @@
                 background-size: cover;
             }
             form{
-                height:  400px;
+                height:  350px;
                 display: flex;
                 justify-content: center;
                 flex-flow: column wrap;

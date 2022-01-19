@@ -21,11 +21,16 @@ if (isset($_REQUEST['btnlogin'])) {
     //Comprobar si el campo password esta rellenado
     $aErrores["password"] = validacionFormularios::validarPassword($_REQUEST['password'], 8, 3, 2, OBLIGATORIO);
 
-    /*Si hay algun error devolvernos el mensaje de $error*/
+    /* Si hay algun error devolvernos el mensaje de $error */
     if ($aErrores["username"] || $aErrores["password"]) {
         $error = "! Algo mal ¡";
     }
+    $objetoUsuario = UsuarioPDO::validarUsuario($_REQUEST['username'], $_REQUEST['password']);
 
+    if (!$objetoUsuario) {
+        $error = "! Algo mal ¡";
+        $entradaOK = false;
+    }
 
     foreach ($aErrores as $nombreCampo => $value) {
         //Comprobar si el campo ha sido rellenado
@@ -42,20 +47,17 @@ if (isset($_REQUEST['btnlogin'])) {
 if ($entradaOK) {
     //Tratamiento del formulario - Tratamiento de datos OK
     //Si los datos estan correctos
-    
-    /*devolver el usuario si esta si esta valido */
-    $objetoUsuario = UsuarioPDO::validarUsuario($_REQUEST['username'], $_REQUEST['password']);
 
-    if ($objetoUsuario) {
-        
-        $oUsuario=UsuarioPDO::registrarUltimaConexion($objetoUsuario); /*devolver el objeto usuario cambiado   */
+    /* devolver el usuario si esta si esta valido */
+    
+        $oUsuario = UsuarioPDO::registrarUltimaConexion($objetoUsuario); /* devolver el objeto usuario cambiado   */
         $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $oUsuario;
-        
+
         /* LLevamos el usuario a la pagina de inicio */
         $_SESSION['paginaEnCurso'] = 'inicio';
         header('Location: index.php');
         exit;
-    }
+   
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario

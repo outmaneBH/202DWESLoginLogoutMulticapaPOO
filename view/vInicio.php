@@ -11,7 +11,7 @@
             body{
                 background-image: url(webroot/media/building-g458550d32_1920.jpg);
                 background-repeat: no-repeat;
-        
+
                 object-fit: contain;
             }
             input{
@@ -69,7 +69,7 @@
                             <div class="w3-dropdown-content w3-bar-block " style="right:0;margin-top: 20%;">
                                 <button class="w3-bar-item w3-button w3-black w3-hover-blue" name="editPerfil" type="submit">Editar Perfil </button>
                                 <button class="w3-bar-item w3-button w3-black w3-hover-blue" name="deleteAccount" type="submit">Delete Account </button>
-
+                               <?php // <button class="w3-bar-item w3-button btn-info w3-hover-blue" name="logout" type="submit">Logout <?php echo $aInicioPrivado['codUsuario'];  </button> ?>
                             </div>
                         </div>
                     </form>
@@ -83,8 +83,8 @@
             </div>
             <div style="float: right;width: 320px;background: white;" class="alert">
                 <form id="form2">        
-                     <input type="submit" name="detalle" class="w3-bar-item w3-button w3-black w3-hover-blue" value="Detalle">
-                     <input type="submit" name="mtoDepartamentos" class="w3-bar-item w3-button w3-black w3-hover-blue" value="MtoDepartamentos"> 
+                    <input type="submit" name="detalle" class="w3-bar-item w3-button w3-black w3-hover-blue" value="Detalle">
+                    <input type="submit" name="mtoDepartamentos" class="w3-bar-item w3-button w3-black w3-hover-blue" value="MtoDepartamentos"> 
                 </form>
             </div>
         </div>

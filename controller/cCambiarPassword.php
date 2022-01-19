@@ -5,12 +5,8 @@ if (isset($_REQUEST['btncancelar'])) {
     header("Location:index.php");
     exit;
 }
-if (isset($_REQUEST['btnupdate'])) {
-    $_SESSION['paginaEnCurso'] = 'wip';
-    header("Location:index.php");
-    exit;
-}
 
+$oUsuario = $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'];
 /* Varible de entrada correcta inicializada a true */
 $entradaOK = true;
 
@@ -31,7 +27,7 @@ $error = "";
 
 /* comprobar si ha pulsado el button entrar */
 if (isset($_REQUEST['btnupdate'])) {
-    $entradaOK = false;
+
 //Para cada campo del formulario: Validar entrada y actuar en consecuencia
 //Validar entrada
 //Comprobar si el campo password esta rellenado
@@ -43,11 +39,16 @@ if (isset($_REQUEST['btnupdate'])) {
 //Comprobar si el campo password esta rellenado
     $aErrores["password2"] = validacionFormularios::validarPassword($_REQUEST['password2'], 8, 1, 2, OBLIGATORIO);
 
-
-    /* devolver el usuario si esta si esta valido */
-    $objetoUsuario = UsuarioPDO::validarUsuario($_REQUEST['username'], $_REQUEST['password']);
-    if ($objetoUsuario) {
-        
+    /* Si hay algun error devolvernos el mensaje de $error */
+    if ($aErrores["password"] || $aErrores["password1"] || $aErrores["password2"]) {
+        $error = "! Algo mal ¡";
+    }
+    if (!UsuarioPDO::validarUsuario($oUsuario->get_codUsuario(), $_REQUEST['password'])) {
+        $error = "Pass Error";
+    } else {
+        if ($_REQUEST['password1'] != $_REQUEST['password2']) {
+            $entradaOK = false;
+        }
     }
 
 
@@ -70,19 +71,13 @@ if ($entradaOK) {
 //Si los datos estan correctos
 
 
-    /* Editar la tabla T01_Usuario para  el campo password del usuario  */
-    $sql2 = "UPDATE T01_Usuario SET T01_Password=sha2('" . $_SESSION['usuario202DWESAppLoginLogout'] . $aRespuestas['password1'] . "',256) WHERE T01_CodUsuario='" . $_SESSION['usuario202DWESAppLoginLogout'] . "'";
+    $cambiarUsuario = UsuarioPDO::cambiarPassword($oUsuario->get_codUsuario(), $_REQUEST['password1']);
 
-    /* Preparamos  la consulta   */
-    $consulta = $miDB->prepare($sql2);
-    /* Ejecución de la consulta */
-    $consulta->execute();
-
-    if ($consulta->rowCount() > 0) {
-        /* cuando todo esta bien devolverlo a editar de Perfil */
-        header("Location:editarPerfil.php");
-    } else {
-        $error = "Algo mal";
+    if ($cambiarUsuario) {
+        /* LLevamos el usuario a la pagina de inicio */
+        $_SESSION['paginaEnCurso'] = 'editar';
+        header('Location: index.php');
+        exit;
     }
 } else {
 //Mostrar el formulario hasta que lo rellenemos correctamente
