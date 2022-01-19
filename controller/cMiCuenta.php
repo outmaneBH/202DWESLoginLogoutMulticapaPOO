@@ -9,7 +9,7 @@ if (isset($_REQUEST['btndelete'])) {
 
 /* Si el usuario ha pulsado en cancelar cambiamos la vista y devolver la pagina de inicio */
 if (isset($_REQUEST['btncancelar'])) {
-    $_SESSION['paginaEnCurso'] = 'inicio';
+    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
     header("Location:index.php");
     exit;
 }
@@ -65,14 +65,14 @@ if ($entradaOK) {
 
     if ($updateUsuario) {//Si es true cambamos la descripcion de la session con set_descUsuario y cambiar vista a inicio.
         $objectUsuario->set_descUsuario($_REQUEST['DescUsuario']);
-        $_SESSION['paginaEnCurso'] = 'inicio';
+        $_SESSION['paginaEnCurso'] = 'inicioPrivado';
         header('Location: index.php');
         exit;
     }
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
-    $_SESSION['paginaAnterior'] = 'inicio';
+    $_SESSION['paginaAnterior'] = 'inicioPrivado';
     require_once $views['layout'];
 }
 ?>

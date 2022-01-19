@@ -6,6 +6,6 @@ if (isset($_REQUEST['cancel'])) {
 }
 
 
-$_SESSION['paginaAnterior']='inicio';
+$_SESSION['paginaAnterior']='inicioPrivado';
 require_once $views['layout'];
 

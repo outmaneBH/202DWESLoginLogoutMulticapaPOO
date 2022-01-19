@@ -1,14 +1,32 @@
 <?php
 
-/*
+/**
+ * Login Logout de Users y mantimiento de Departamentos.
+ * 
+ * Crud en Funccion de Usuario
+ * 
  * @author: OUTMANE BOUHOU
  * @updated: 08/1/2022
- * @see : Desarrollo de una aplicación (Proyecto LoginLogout MultiCapa) con control de acceso e identificación del
-  usuario basado en un formulario */
+ * @version 1.0
+ */
 
+/**
+ * Login Logout de Users y mantimiento de Departamentos.
+ * 
+ * Crud en Funccion de Usuario
+ * 
+ * @package LoginLogout
+ * @author Sasha
+ * @updated: 08/1/2022
+ * @version 1.0
+ */
 class UsuarioPDO implements interfaceUsuarioDB {
 
     /**
+     * validacion de usuario
+     * 
+     * Combrobacion si hay algun ususario con ese codigo y Password
+     * 
      * @param type $codUsuario
      * @param type $password
      * @return $valideUsuario
@@ -46,13 +64,11 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function altaUsuario($CodUsuario, $Password, $DescUsuario) {
         $altaUsuario = false;
-
         $sql2 = "INSERT INTO T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario)  VALUES ('" . $CodUsuario . "', sha2('" . $CodUsuario . $Password . "',256), '" . $DescUsuario . "')";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
         if ($resultadoConsulta->rowCount() > 0) {
             $altaUsuario = true;
         }
-
         return $altaUsuario;
     }
 
@@ -63,12 +79,9 @@ class UsuarioPDO implements interfaceUsuarioDB {
      * @return true si ha modifacado el usuario con el codigo dado y el campo modificado $DescUsuario
      */
     public static function modificarUsuario($CodUsuario, $DescUsuario) {
-
-
         $sql = "UPDATE T01_Usuario SET T01_DescUsuario='" . $DescUsuario . "' WHERE T01_CodUsuario='" . $CodUsuario . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
         $update = true;
-
         return $update;
     }
 
@@ -78,14 +91,12 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function borrarUsuario($CodUsuario) {
         $delete = false;
-
         $sql = "DELETE FROM T01_Usuario WHERE T01_CodUsuario='" . $CodUsuario . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
         $resultado = $resultadoConsulta->rowCount();
         if ($resultado > 0) {
             $delete = true;
         }
-
         return $delete;
     }
 
@@ -96,15 +107,12 @@ class UsuarioPDO implements interfaceUsuarioDB {
      */
     public static function validarCodNoExiste($CodUsuario) {
         $CodNoExiste = null;
-
         $sql = "SELECT T01_CodUsuario FROM T01_Usuario WHERE T01_CodUsuario='" . $CodUsuario . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
         $resultado = $resultadoConsulta->fetchObject();
-
         if ($resultado != null) {
             $CodNoExiste = "Ya hay Cuenta con este Usuario.";
         }
-
         return $CodNoExiste;
     }
 
@@ -112,28 +120,22 @@ class UsuarioPDO implements interfaceUsuarioDB {
         /* Hay que cambiar eso */
         $ofecha = new DateTime();
         $time = $ofecha->getTimestamp();
-
         $oUsuario->set_numConexiones($oUsuario->get_numConexiones() + 1);
         $oUsuario->set_fechaHoraUltimaConexionAnterior($oUsuario->get_fechaHoraUltimaConexion());
         $oUsuario->set_fechaHoraUltimaConexion($time);
-
-        $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=".$oUsuario->get_numConexiones()." ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $oUsuario->get_codUsuario() . "'";
+        $sql2 = "UPDATE T01_Usuario SET T01_NumConexiones=" . $oUsuario->get_numConexiones() . " ,T01_FechaHoraUltimaConexion=$time WHERE T01_CodUsuario='" . $oUsuario->get_codUsuario() . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
-
-      
         return $oUsuario;
     }
 
     public static function cambiarPassword($codUsuario, $password) {
         $updatePassword = false;
-
         $sql = "UPDATE T01_Usuario SET T01_Password=sha2('" . $codUsuario . $password . "',256) WHERE T01_CodUsuario='" . $codUsuario . "'";
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql);
         $resultado = $resultadoConsulta->rowCount();
         if ($resultado > 0) {
             $updatePassword = true;
         }
-
         return $updatePassword;
     }
 
