@@ -19,7 +19,7 @@ require_once $views[$_SESSION['paginaEnCurso']];
         Copyrights © 2021 
         <a class="text-white" href="../index.html">OUTMANE BOUHOU</a>
         . All rights reserved.
-         <p>Ultima actualizacion : 18 / 01 / 2022 version 1 ( v.1 LoginLogout MultiCapa POO )</p>
+         <p>Ultima actualizacion : 21 / 01 / 2022 version 1.2 ( v.2 LoginLogout MultiCapa POO )</p>
     </div>
     <!-- Copyright -->
 </footer>
