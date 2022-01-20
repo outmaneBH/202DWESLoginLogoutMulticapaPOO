@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * @author OUTMANE BOUHOU
+ * @since 5/01/2022
+ * @version 1.0
+ * 
+ * Controlador del cambiarPassword.
+ * Requiere la vista del de cambiarPassword.
+ */
+
+/**
+ * Si ha pulasdo cancel devlover controlador de paginaAnterior
+ */
 if (isset($_REQUEST['btncancelar'])) {
     $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
     header("Location:index.php");
@@ -33,10 +45,10 @@ if (isset($_REQUEST['btnupdate'])) {
 //Comprobar si el campo password esta rellenado
     $aErrores["password"] = validacionFormularios::validarPassword($_REQUEST['password'], 8, 1, 2, OBLIGATORIO);
 
-//Comprobar si el campo password esta rellenado
+//Comprobar si el campo password1 esta rellenado
     $aErrores["password1"] = validacionFormularios::validarPassword($_REQUEST['password1'], 8, 1, 2, OBLIGATORIO);
 
-//Comprobar si el campo password esta rellenado
+//Comprobar si el campo password2 esta rellenado
     $aErrores["password2"] = validacionFormularios::validarPassword($_REQUEST['password2'], 8, 1, 2, OBLIGATORIO);
 
     /* Si hay algun error devolvernos el mensaje de $error */
@@ -69,7 +81,6 @@ if (isset($_REQUEST['btnupdate'])) {
 if ($entradaOK) {
 //Tratamiento del formulario - Tratamiento de datos OK
 //Si los datos estan correctos
-
 
     $cambiarUsuario = UsuarioPDO::cambiarPassword($oUsuario->get_codUsuario(), $_REQUEST['password1']);
 

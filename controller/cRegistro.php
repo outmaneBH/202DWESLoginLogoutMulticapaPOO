@@ -1,4 +1,12 @@
 <?php
+/**
+ * @author OUTMANE BOUHOU
+ * @since 5/01/2022
+ * @version 1.0
+ * 
+ * Controlador del Registro.
+ * Requiere la vista del Registro.
+ */
 
 /* Si el usuario ha pulsado en cancelar cambiamos la vista y devolver la pagina de login */
 if (isset($_REQUEST['btncancelar'])) {
@@ -57,6 +65,7 @@ if (isset($_REQUEST['btncreate'])) {
 if ($entradaOK) {
     //Tratamiento del formulario - Tratamiento de datos OK
     //Si los datos estan correctos
+    
     /* Insertamos el nuevo usuario y hagamos la actualizacion de este usuario  */
     UsuarioPDO::altaUsuario($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['DescUsuario']);
     $objetoUsuario = UsuarioPDO::validarUsuario($_REQUEST['username'], $_REQUEST['password']);

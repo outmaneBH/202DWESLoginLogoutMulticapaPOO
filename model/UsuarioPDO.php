@@ -16,7 +16,7 @@
  * Crud en Funccion de Usuario
  * 
  * @package LoginLogout
- * @author Sasha
+ * @author OUTMANE BOUHOU
  * @updated: 08/1/2022
  * @version 1.0
  */
@@ -27,9 +27,9 @@ class UsuarioPDO implements interfaceUsuarioDB {
      * 
      * Combrobacion si hay algun ususario con ese codigo y Password
      * 
-     * @param type $codUsuario
-     * @param type $password
-     * @return $valideUsuario
+     * @param String $codUsuario
+     * @param String $password
+     * @return $valideUsuario boolean
      * @see es una fuccion que pide el codigo del usuario y su password
      * y verifica en la base de datos si existe ,cuando existe se mete sus 
      * datos en un objeto de clase Usuario . y hace un update para numero de conexiones,
@@ -56,10 +56,11 @@ class UsuarioPDO implements interfaceUsuarioDB {
     }
 
     /**
+     * La funcion se insrta el nuevo usuario registrado.
      * 
-     * @param type $CodUsuario 
-     * @param type $Password
-     * @param type $DescUsuario
+     * @param  String $CodUsuario 
+     * @param  String $Password
+     * @param  String $DescUsuario
      * @return boolean (true) si ha insertado todo bien en la base de datos sino devuelve false
      */
     public static function altaUsuario($CodUsuario, $Password, $DescUsuario) {
@@ -73,10 +74,11 @@ class UsuarioPDO implements interfaceUsuarioDB {
     }
 
     /**
+     *  La funcion se modifica el usuario cuando ha hecho login o cuando se ha registrado.
      * 
-     * @param type $DescUsuario
-     * @param type $CodUsuario
-     * @return true si ha modifacado el usuario con el codigo dado y el campo modificado $DescUsuario
+     * @param  String $DescUsuario
+     * @param  String $CodUsuario
+     * @return boolean true si ha modifacado el usuario con el codigo dado y el campo modificado $DescUsuario
      */
     public static function modificarUsuario($CodUsuario, $DescUsuario) {
         $sql = "UPDATE T01_Usuario SET T01_DescUsuario='" . $DescUsuario . "' WHERE T01_CodUsuario='" . $CodUsuario . "'";
@@ -86,7 +88,9 @@ class UsuarioPDO implements interfaceUsuarioDB {
     }
 
     /**
-     * @param type $CodUsuario para borrar este usuario como parametro.
+     * La funcion se borra el usuario con su codigo,si ha borrado bien devolvernos true si esta bien .
+     * 
+     * @param  String $CodUsuario para borrar este usuario como entrada de parametro.
      * @return boolean (true) si ha borrado el usuario desde la base de datos  sino devuelve false
      */
     public static function borrarUsuario($CodUsuario) {
@@ -101,8 +105,9 @@ class UsuarioPDO implements interfaceUsuarioDB {
     }
 
     /**
+     * La funcion busca el usuario si existe en la base de datos ,si existe devuelve un mensaje sino devuelve null
      * 
-     * @param type $CodUsuario para validarlo
+     * @param String $CodUsuario para validarlo
      * @return string devuelve un mensaje si el codigo del usuario existe en la base de datos.
      */
     public static function validarCodNoExiste($CodUsuario) {
@@ -116,6 +121,14 @@ class UsuarioPDO implements interfaceUsuarioDB {
         return $CodNoExiste;
     }
 
+    
+    /**
+     * La funcion registra la ultima Conexcion del usario pasdo como parametro
+     * Y cambia los valores del Objeto
+     * 
+     * @param Objeto $oUsuario
+     * @return Objeto con nueavas funciones cambiada
+     */
     public static function registrarUltimaConexion($oUsuario) {
         /* Hay que cambiar eso */
         $ofecha = new DateTime();
@@ -127,7 +140,15 @@ class UsuarioPDO implements interfaceUsuarioDB {
         $resultadoConsulta = DBPDO::ejecutaConsulta($sql2);
         return $oUsuario;
     }
-
+    
+    
+/**
+ * La funcion cambia el password del usuario volviendo true o false depende si ha modificado
+ * 
+ * @param String $codUsuario
+ * @param String $password
+ * @return boolean
+ */
     public static function cambiarPassword($codUsuario, $password) {
         $updatePassword = false;
         $sql = "UPDATE T01_Usuario SET T01_Password=sha2('" . $codUsuario . $password . "',256) WHERE T01_CodUsuario='" . $codUsuario . "'";

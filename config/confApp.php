@@ -1,10 +1,18 @@
 <?php
+/**
+ * Login Logout de Users y mantimiento de Departamentos.
+ * 
+ * Ficheros necesarios para La aplicacion
+ * 
+ * @author: OUTMANE BOUHOU
+ * @updated: 02/01/2022
+ * @version 1.0
+ */
 
 /*
  * @author: OUTMANE BOUHOU
  * @updated: 02/1/2022
- * @see : Desarrollo de una aplicación (Proyecto LoginLogout MultiCapa) con control de acceso e identificación del
-  usuario basado en un formulario */
+ * @see : Añadir los ficheros para usarlos */
 
 /* Añadir las librerias */
 require_once "core/LibreriaValidacion.php";
@@ -14,7 +22,7 @@ define("OBLIGATORIO", 1);
 define("OPCIONAL", 0);
 $error = '';
 
-/* Añadir models */
+/* Añadir modelsm para usarlos en toda la Aplicacion */
 require_once "model/AppError.php";
 require_once "model/interfaceDB.php";
 require_once "model/interfaceUsuarioDB.php";
@@ -22,7 +30,7 @@ require_once "model/Usuario.php";
 require_once "model/UsuarioPDO.php";
 require_once "model/DBPDO.php";
 
-/* Añadir controladores en Arrays */
+/* Añadir controladores en Array */
 $controllers = [
     "error" => "controller/cError.php",
     "login" => "controller/cLogin.php",
@@ -36,7 +44,7 @@ $controllers = [
     "borrar" => "controller/cBorrarCuenta.php"
 ];
 
-/* Añadir vistas en Arrays */
+/* Añadir vistas en Array */
 $views = [
     "layout" => "view/Layout.php",
     "error" => "view/vError.php",

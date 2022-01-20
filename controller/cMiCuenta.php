@@ -1,4 +1,12 @@
 <?php
+/**
+ * @author OUTMANE BOUHOU
+ * @since 5/01/2022
+ * @version 1.0
+ * 
+ * Controlador del Micuenta.
+ * Requiere la vista del Micuenta.
+ */
 
 /* Si el usuario ha pulsado en borrarcuenta cambiamos la vista y devolver la pagina de borrarcuenta */
 if (isset($_REQUEST['btndelete'])) {

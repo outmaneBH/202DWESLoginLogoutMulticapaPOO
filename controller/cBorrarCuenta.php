@@ -28,6 +28,6 @@ if (isset($_REQUEST['btndelete'])) {
         exit;
     }
 }
-
+$_SESSION['paginaAnterior']='inicioPrivado';
 require_once $views['layout'];
 ?>

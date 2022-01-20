@@ -1,12 +1,22 @@
 <?php
 
+/**
+ * @author OUTMANE BOUHOU
+ * @since 2/01/2022
+ * @version 1.0
+ * 
+ * Controlador del login.
+ * Requiere la vista del login.
+ */
 /* Si el usuario ha pulsado en registrar cambiamos la vista y devolver la pagina de registrar */
 if (isset($_REQUEST['cancel'])) {
     $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
     header("Location:index.php");
     exit;
 }
+
 $entradaOK = true;
+
 /* definir un array para alamcenar errores del username y la password */
 $aErrores = ['username' => null,
     'password' => null
@@ -48,20 +58,19 @@ if ($entradaOK) {
     //Tratamiento del formulario - Tratamiento de datos OK
     //Si los datos estan correctos
 
-    /* devolver el usuario si esta si esta valido */
-    
-        $oUsuario = UsuarioPDO::registrarUltimaConexion($objetoUsuario); /* devolver el objeto usuario cambiado   */
-        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $oUsuario;
+    /**
+     * devolver el usuario CAMBIADO y meter lo en la session 
+     */
+    $oUsuario = UsuarioPDO::registrarUltimaConexion($objetoUsuario);
+    $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $oUsuario;
 
-        /* LLevamos el usuario a la pagina de inicio */
-        $_SESSION['paginaEnCurso'] = 'inicioPrivado';
-        header('Location: index.php');
-        exit;
-   
+    /* LLevamos el usuario a la pagina de inicio */
+    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+    header('Location: index.php');
+    exit;
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
-
     $_SESSION['paginaAnterior'] = 'inicioPublico';
     require_once $views['layout'];
 }

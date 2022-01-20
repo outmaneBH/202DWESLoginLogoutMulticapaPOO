@@ -1,7 +1,17 @@
 <?php
+/**
+ * @author Outmane Bouhou
+ * @since 12/01/2022
+ * @version 1.0
+ * 
+ * Usamos la clase para iniciar los erroes en toda la aplicaion (mostramos los excepciones en una otra vista )
+ */
+
 class AppError {
 
-    // Properties de la clase Usuario
+    /**
+     * Properties de la clase AppError
+     */
     private $codError;
     private $descError;
     private $archivoError;
@@ -10,7 +20,9 @@ class AppError {
 
 
     
-    /* constroctor */
+    /**
+     *  constroctor AppError
+     */
     function __construct($codError, $descError, $archivoError, $lineaError, $paginaSiguiente) {
         $this->codError = $codError;
         $this->descError = $descError;
@@ -19,7 +31,9 @@ class AppError {
         $this->paginaSiguiente = $paginaSiguiente;
     }
 
-    
+    /**
+     * Los Geters y Los seteres
+     */
     function get_codError() {
         return $this->codError;
     }
@@ -68,5 +82,4 @@ class AppError {
         $this->paginaSiguiente = $paginaSiguiente;
     }
 
-   
 }
