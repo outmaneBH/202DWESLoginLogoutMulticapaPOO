@@ -17,7 +17,7 @@ if (isset($_REQUEST['btndelete'])) {
 
 /* Si el usuario ha pulsado en cancelar cambiamos la vista y devolver la pagina de inicio */
 if (isset($_REQUEST['btncancelar'])) {
-    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+    $_SESSION['paginaEnCurso'] =  $_SESSION['paginaAnterior'];
     header("Location:index.php");
     exit;
 }

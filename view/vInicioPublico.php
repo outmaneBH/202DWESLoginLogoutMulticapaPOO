@@ -72,7 +72,7 @@
             </div>
         </nav>
         <div  class="container-fluid mt-3">
-            <p style="color: white; font-size: 30px;font-family: cursive;opacity: 0.5 ;background: black;" id="demo"></p>
+            <p style="color: white; font-size: 50px;font-family: cursive;opacity: 0.5 ;background: black;line-height: 150px;" id="demo"></p>
 
         </div>
         <script>
