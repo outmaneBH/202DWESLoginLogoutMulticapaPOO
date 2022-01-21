@@ -8,7 +8,7 @@
 
 /* Si el usuario ha pulsado el button cancelar */
 if (isset($_REQUEST['btncancelar'])) {
-    $_SESSION['paginaEnCurso'] = 'inicio';
+    $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
     header("Location:index.php");
     exit;
 }
@@ -28,6 +28,6 @@ if (isset($_REQUEST['btndelete'])) {
         exit;
     }
 }
-
+$_SESSION['paginaAnterior']='inicioPrivado';
 require_once $views['layout'];
 ?>

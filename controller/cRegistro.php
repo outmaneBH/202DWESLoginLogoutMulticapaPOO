@@ -1,4 +1,12 @@
 <?php
+/**
+ * @author OUTMANE BOUHOU
+ * @since 5/01/2022
+ * @version 1.0
+ * 
+ * Controlador del Registro.
+ * Requiere la vista del Registro.
+ */
 
 /* Si el usuario ha pulsado en cancelar cambiamos la vista y devolver la pagina de login */
 if (isset($_REQUEST['btncancelar'])) {
@@ -57,26 +65,26 @@ if (isset($_REQUEST['btncreate'])) {
 if ($entradaOK) {
     //Tratamiento del formulario - Tratamiento de datos OK
     //Si los datos estan correctos
+    
     /* Insertamos el nuevo usuario y hagamos la actualizacion de este usuario  */
     UsuarioPDO::altaUsuario($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['DescUsuario']);
     $objetoUsuario = UsuarioPDO::validarUsuario($_REQUEST['username'], $_REQUEST['password']);
 
     /* Si todo esta bien metemos su datos en la session y cambiamos la vista a inicio */
     if ($objetoUsuario) {
-        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $objetoUsuario;
-        $ultimaConexionAnterior = $objetoUsuario->get_fechaHoraUltimaConexion();
-        if ($ultimaConexionAnterior != null) {
-            $_SESSION['T01_FechaHoraUltimaConexionAnterior'] = $ultimaConexionAnterior;
-        }
-        //Se dirige al usuario al inicio
-        $_SESSION['paginaEnCurso'] = 'inicio';
+
+        $oUsuario = UsuarioPDO::registrarUltimaConexion($objetoUsuario);
+        $_SESSION['usuario202DWESLoginLogoutMulticapaPOO'] = $oUsuario;
+
+        /* LLevamos el usuario a la pagina de inicio */
+        $_SESSION['paginaEnCurso'] = 'inicioPrivado';
         header('Location: index.php');
         exit;
     }
 } else {
     //Mostrar el formulario hasta que lo rellenemos correctamente
     //Mostrar formulario
-
+    $_SESSION['paginaAnterior'] = 'inicioPublico';
     require_once $views['layout'];
 }
 ?>

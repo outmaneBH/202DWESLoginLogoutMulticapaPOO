@@ -33,6 +33,9 @@
         </style>
     </head>
     <body>
+        <div class="w3-bar w3-black  ">
+            <p style="padding: 10px;font-size: 18px;font-weight: bold;" class="w3-center ">Web Application Login-Logout</p>
+        </div> 
         <form action="">
             <button style="margin: 10px;font-weight: bold;float: left;" name="cancel" class="btn btn-primary" type="submit">Cancel</button>
         </form><br><br>

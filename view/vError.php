@@ -15,7 +15,8 @@
             <h4>Error Codigo :<?php echo $aError["codError"]; ?></h4>
             El Mensaje es <strong><?php echo $aError["msgError"]; ?> </strong><br>
             En la Linea <strong><?php echo $aError["lineaError"]; ?></strong><br>
-            En el archivo : <strong><?php echo $aError["archivoError"]; ?></strong>
+            En el archivo : <strong><?php echo $aError["archivoError"]; ?></strong><br>
+            La pagina Siguiente es  : <strong><?php echo $aError["paginaSiguiente"]; ?></strong>
         </div>
 
 

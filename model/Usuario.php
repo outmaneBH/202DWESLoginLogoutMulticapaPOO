@@ -1,8 +1,17 @@
 <?php
 
+/**
+ * @author Outmane Bouhou
+ * @since 01/01/2022
+ * @version 1.0
+ * 
+ * Clase que crea y utiliza usuarios en la aplicación.
+ */
 class Usuario {
 
-    // Properties de la clase Usuario
+    /**
+     * Properties de la clase Usuario
+     */
     private $codUsuario;
     private $password;
     private $descUsuario;
@@ -12,9 +21,10 @@ class Usuario {
     private $perfil;
     private $imagenUsuario;
 
-    /* constroctor */
-
-    function __construct($codUsuario, $password, $descUsuario, $numConexiones, $fechaHoraUltimaConexion,$fechaHoraUltimaConexionAnterior, $perfil,$imagenUsuario) {
+    /**
+     * constroctor de clase Usuario
+     */
+    function __construct($codUsuario, $password, $descUsuario, $numConexiones, $fechaHoraUltimaConexion, $fechaHoraUltimaConexionAnterior, $perfil, $imagenUsuario) {
         $this->codUsuario = $codUsuario;
         $this->password = $password;
         $this->descUsuario = $descUsuario;
@@ -25,17 +35,16 @@ class Usuario {
         $this->imagenUsuario = $imagenUsuario;
     }
 
-    /* get y set de codUsuario */
-
+    /**
+     *  get y set de la clase Usuario
+     */
     function get_codUsuario() {
         return $this->codUsuario;
     }
 
-    function set_name($codUsuario) {
+    function set_codUsuario($codUsuario) {
         $this->codUsuario = $codUsuario;
     }
-
-    /* get y set de password */
 
     function get_password() {
         return $this->password;
@@ -45,8 +54,6 @@ class Usuario {
         $this->password = $password;
     }
 
-    /* get y set de descUsuario */
-
     function get_descUsuario() {
         return $this->descUsuario;
     }
@@ -55,17 +62,13 @@ class Usuario {
         $this->descUsuario = $descUsuario;
     }
 
-    /* get y set de numAccesos */
-
     function get_numConexiones() {
         return $this->numConexiones;
     }
 
-    function set_numAccesos($numConexiones) {
+    function set_numConexiones($numConexiones) {
         $this->numConexiones = $numConexiones;
     }
-
-    /* get y set de fechaHoraUltimaConexion */
 
     function get_fechaHoraUltimaConexion() {
         return $this->fechaHoraUltimaConexion;
@@ -75,8 +78,6 @@ class Usuario {
         $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
     }
 
-    /* get y set de fechaHoraUltimaConexionAnterior */
-
     function get_fechaHoraUltimaConexionAnterior() {
         return $this->fechaHoraUltimaConexionAnterior;
     }
@@ -85,8 +86,6 @@ class Usuario {
         $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
     }
 
-    /* get y set de perfil */
-
     function get_perfil() {
         return $this->perfil;
     }
@@ -94,7 +93,6 @@ class Usuario {
     function set_perfil($perfil) {
         $this->perfil = $perfil;
     }
-    /* get y set de iamgen */
 
     function get_imagenUsuario() {
         return $this->imagenUsuario;
